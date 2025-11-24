@@ -140,13 +140,12 @@
                 </button>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
             const CITIES_DATA = {{ livre | tojson }};
             const GLOBAL_STATS = {{ stats | tojson }};
         </script>
         
-        <script src="{{ url_for('static', filename='main.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
     </body>
     </html> 

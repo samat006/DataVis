@@ -100,7 +100,9 @@ def update_donnees_au_chapitre(cle ,livre, chapitre_id, dossier):
 ajouter_donnees_au_chapitre(livre, chapitre_id=2, dossier="pop")
 update_donnees_au_chapitre("DonneEnv",livre, chapitre_id=3, dossier="environnemental/pollution")
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/eau")
-#update_donnees_au_chapitre("DonneEau",livre, chapitre_id=3, dossier="environnemental/eau")
+ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/temp")
+ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/dechet")
+
 
 
 

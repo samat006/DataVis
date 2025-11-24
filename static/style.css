@@ -481,7 +481,7 @@ body {
     position: relative;
 }
 
-    .page-right-wrapper {
+.page-right-wrapper {
     position: absolute;
     right: 0;
     width: 50%;
@@ -491,7 +491,6 @@ body {
     transition: transform 2s cubic-bezier(0.645, 0.045, 0.355, 1);
     z-index: 10;
 }
-
 
 .page-spread.turning .page-right-wrapper {
     transform: rotateY(-180deg);
@@ -1027,12 +1026,12 @@ body {
 body, html {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* on bloque le scroll par défaut */
+  overflow: hidden;
   height: 100%;
 }
 
 .page {
-  position: absolute; /* chaque page se superpose */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -1047,7 +1046,7 @@ body, html {
 .page.hidden {
   opacity: 0;
   transform: translateY(-100%);
-  pointer-events: none; /* empêche interaction avec la page cachée */
+  pointer-events: none;
 }
 
 .page.visible {
@@ -1055,6 +1054,7 @@ body, html {
   transform: translateY(0);
   pointer-events: auto;
 }
+
 .page-spread.turning .page-right-wrapper {
     transform: rotateY(-180deg);
     transition: transform 1s ease;
@@ -1066,8 +1066,9 @@ body, html {
 }
 
 .page-spread.turned {
-    display: none; /* optionnel, si tu veux complètement masquer la page tournée */
+    display: none;
 }
+
 .page-spread {
     perspective: 2000px;
 }
@@ -1086,7 +1087,7 @@ body, html {
 }
 
 .page-spread.turned {
-    display: none; /* masque complètement la page tournée */
+    display: none;
 }
 
 .page-spread {
@@ -1114,6 +1115,7 @@ body, html {
 .page-spread.hidden {
     display: none;
 }
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -1158,6 +1160,7 @@ body, html {
     color: #1f2937;
     min-width: 30px;
 }
+
 /* === BARRES FUTURISTES === */
 .bar-container {
     position: relative;
@@ -1241,6 +1244,7 @@ body, html {
     color: #ef4444;
     text-shadow: 0 0 10px #ef4444;
 }
+
 .bar-container {
     position: relative;
     height: 24px;
@@ -1267,6 +1271,7 @@ body, html {
     text-shadow: 0 0 4px rgba(0,0,0,0.5);
     pointer-events: none;
 }
+
 .circle-chart-wrapper {
     text-align: center;
     margin-bottom: 30px;
@@ -1275,7 +1280,7 @@ body, html {
 .circle-title {
     display: inline-block;
     padding: 8px 16px;
-    background-color: #3b82f6; /* bleu clair */
+    background-color: #3b82f6;
     color: white;
     font-size: 1.5em;
     font-weight: 700;
@@ -1561,7 +1566,6 @@ body, html {
     animation: fadeInUp 0.6s ease-out;
 }
 
-
 /* ════════════════════════════════════════════════════════════ */
 /* 🗺️ CARTE CESIUM 3D - LÉGENDE ET OVERLAY */
 /* ════════════════════════════════════════════════════════════ */
@@ -1801,10 +1805,6 @@ body, html {
     opacity: 1;
 }
 
-
-
-
-
 .env-wrapper {
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(15px);
@@ -1850,8 +1850,6 @@ body, html {
     font-size: 13px;
     opacity: 0.9;
 }
-
-
 
 /* ════════════════════════════════════════════════════════════ */
 /* 🌍 DASHBOARD POLLUTION - STYLES ULTRA MODERNES */
@@ -2300,695 +2298,6 @@ body, html {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
-   🌊 RIVIÈRES - GRAPHIQUES TEMPORELS
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.rivers-charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.river-chart-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.river-chart-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-}
-
-.river-chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--color-gray-100);
-}
-
-.river-chart-header h4 {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-}
-
-.river-chart-header h4 i {
-    color: var(--color-info);
-    font-size: 0.9em;
-}
-
-.station-badge {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Timeline Chart */
-.river-timeline-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    height: 150px;
-    padding: 10px;
-    background: linear-gradient(to top, var(--color-gray-50), white);
-    border-radius: var(--radius-md);
-    margin-bottom: 20px;
-    border: 1px solid var(--color-gray-200);
-}
-
-.timeline-point-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-}
-
-.timeline-point {
-    width: 100%;
-    min-width: 20px;
-    border-radius: 4px 4px 0 0;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    cursor: pointer;
-    position: relative;
-}
-
-.timeline-point:hover {
-    opacity: 0.85 !important;
-    transform: scaleY(1.05);
-}
-
-.timeline-label {
-    font-size: 0.7em;
-    color: var(--color-gray-600);
-    text-align: center;
-    font-weight: 500;
-}
-
-/* Stats */
-.river-chart-stats {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    padding-top: 15px;
-    border-top: 1px solid var(--color-gray-200);
-}
-
-.chart-stat {
-    text-align: center;
-}
-
-.chart-stat .stat-label {
-    font-size: 0.8em;
-    color: var(--color-gray-600);
-    display: block;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.chart-stat .stat-value {
-    font-size: 1.6em;
-    font-weight: 800;
-    color: var(--color-primary);
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📍 STATIONS - LISTE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.stations-list {
-    margin-top: 40px;
-}
-
-.stations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-}
-
-.station-card {
-    background: white;
-    border-radius: var(--radius-md);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.station-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.station-marker {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.3em;
-    flex-shrink: 0;
-}
-
-.station-info {
-    flex: 1;
-}
-
-.station-info h4 {
-    font-size: 0.95em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin: 0 0 8px 0;
-}
-
-.station-details {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.detail-badge {
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.75em;
-    font-weight: 600;
-}
-
-.detail-text {
-    font-size: 0.8em;
-    color: var(--color-gray-600);
-}
-
-.detail-text i {
-    margin-right: 4px;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   💧 NAPPES PHRÉATIQUES
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* Alertes */
-.alert-banner {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 24px;
-    border-radius: var(--radius-md);
-    margin-bottom: 24px;
-    font-size: 1em;
-    border-left: 4px solid;
-}
-
-.alert-banner.success {
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    border-color: var(--color-success);
-    color: #065f46;
-}
-
-.alert-banner.warning {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    border-color: var(--color-warning);
-    color: #92400e;
-}
-
-.alert-banner i {
-    font-size: 2em;
-}
-
-.alert-banner strong {
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 4px;
-}
-
-.alert-banner p {
-    margin: 0;
-    font-size: 0.95em;
-}
-
-/* Résumé des alertes */
-.alerts-summary {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.alert-badge {
-    padding: 10px 18px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    font-size: 0.9em;
-}
-
-.alert-badge.critique {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.alert-badge.alert {
-    background: #fed7aa;
-    color: #9a3412;
-}
-
-.alert-badge.vigilance {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.alert-badge i {
-    font-size: 1.1em;
-}
-
-/* Barres de nappes */
-.groundwater-section {
-    margin-top: 30px;
-}
-
-.groundwater-bars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-}
-
-.groundwater-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 20px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.groundwater-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-}
-
-.groundwater-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--color-gray-100);
-}
-
-.groundwater-header h4 {
-    font-size: 1em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin: 0;
-    line-height: 1.3;
-}
-
-.groundwater-icon {
-    font-size: 1.8em;
-}
-
-/* Barre verticale */
-.groundwater-bar-container {
-    position: relative;
-    height: 200px;
-    margin-bottom: 20px;
-}
-
-.groundwater-bar-bg {
-    position: relative;
-    height: 100%;
-    background: linear-gradient(to top, var(--color-gray-100), var(--color-gray-50));
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1px solid var(--color-gray-200);
-}
-
-.groundwater-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0 0 var(--radius-md) var(--radius-md);
-    transition: height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.groundwater-scale {
-    position: absolute;
-    right: -50px;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.scale-mark {
-    font-size: 0.7em;
-    color: var(--color-gray-600);
-    font-weight: 600;
-}
-
-/* Stats nappes */
-.groundwater-stats {
-    border-top: 2px solid var(--color-gray-100);
-    padding-top: 15px;
-}
-
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 0.9em;
-}
-
-.stat-row .stat-label {
-    color: var(--color-gray-600);
-    font-weight: 500;
-}
-
-.stat-row .stat-value {
-    font-weight: 700;
-    color: var(--color-gray-900);
-}
-
-.groundwater-alert {
-    margin-top: 15px;
-    padding: 10px 12px;
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85em;
-    font-weight: 600;
-}
-
-.groundwater-alert i {
-    font-size: 1.2em;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📊 SCORE GLOBAL - SIMPLIFIÉ
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.quality-score-dashboard {
-    padding: 30px 20px;
-}
-
-/* Score principal - PLUS COMPACT */
-.global-score-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 30px;
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 30px;
-    border: 1px solid var(--color-gray-200);
-}
-
-.score-circle-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.score-circle {
-    width: 160px;
-    height: 160px;
-}
-
-.score-circle-bg {
-    fill: none;
-    stroke: var(--color-gray-200);
-    stroke-width: 12;
-}
-
-.score-circle-fill {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-    transform: rotate(-90deg);
-    transform-origin: center;
-    transition: stroke-dasharray 2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.score-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.score-value {
-    font-size: 2.5em;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.score-grade {
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-top: 5px;
-}
-
-.global-score-card h3 {
-    font-size: 1.2em;
-    color: var(--color-gray-900);
-    margin: 0;
-    font-weight: 700;
-}
-
-/* Détails - GRID COMPACT */
-.scores-breakdown {
-    margin-top: 30px;
-}
-
-.scores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.score-mini-card {
-    background: white;
-    border-radius: var(--radius-md);
-    padding: 18px;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.score-mini-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.mini-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3em;
-    margin-bottom: 12px;
-}
-
-.mini-label {
-    font-size: 0.85em;
-    color: var(--color-gray-600);
-    margin-bottom: 8px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.mini-score {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.mini-value {
-    font-size: 1.8em;
-    font-weight: 800;
-}
-
-.mini-grade {
-    font-size: 1.1em;
-    font-weight: 700;
-}
-
-.mini-progress {
-    height: 6px;
-    background: var(--color-gray-200);
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.mini-progress-bar {
-    height: 100%;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 3px;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📱 RESPONSIVE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-@media (max-width: 768px) {
-    .rivers-charts-grid,
-    .groundwater-bars-grid,
-    .scores-grid,
-    .stations-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .dashboard-header h2 {
-        font-size: 1.5em;
-    }
-    
-    .score-circle {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .score-value {
-        font-size: 2em;
-    }
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   ✨ ANIMATIONS
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.river-chart-card,
-.groundwater-card,
-.score-mini-card,
-.station-card {
-    animation: fadeInUp 0.5s ease backwards;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   💧 STYLES MODERNES - MODULE QUALITÉ DE L'EAU V2
-   Design épuré et professionnel
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   🎨 VARIABLES GLOBALES
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-:root {
-    --color-primary: #8b5cf6;
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-danger: #ef4444;
-    --color-info: #3b82f6;
-    --color-gray-50: #f9fafb;
-    --color-gray-100: #f3f4f6;
-    --color-gray-200: #e5e7eb;
-    --color-gray-600: #6b7280;
-    --color-gray-900: #1f2937;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📊 DASHBOARD COMMUN
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.rivers-dashboard,
-.groundwater-dashboard,
-.quality-score-dashboard {
-    padding: 30px 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.dashboard-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--color-gray-200);
-}
-
-.dashboard-header h2 {
-    font-size: 2em;
-    font-weight: 800;
-    color: var(--color-gray-900);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.dashboard-header h2 i {
-    color: var(--color-primary);
-}
-
-.dashboard-header p {
-    font-size: 1em;
-    color: var(--color-gray-600);
-    margin: 0;
-}
-
-.section-title {
-    font-size: 1.3em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin: 30px 0 20px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.section-title i {
-    color: var(--color-primary);
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
    💧 EAU POTABLE PAR COMMUNE
    ════════════════════════════════════════════════════════════════════════════════ */
 
@@ -3057,11 +2366,14 @@ body, html {
 /* Barre de recherche */
 .water-search-container {
     margin-bottom: 30px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .water-search-input {
-    width: 100%;
-    max-width: 500px;
+    flex: 1;
+    min-width: 300px;
     padding: 14px 20px;
     font-size: 1em;
     border: 2px solid var(--color-gray-200);
@@ -3080,11 +2392,35 @@ body, html {
     color: var(--color-gray-600);
 }
 
+.toggle-communes-btn {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--color-primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+    white-space: nowrap;
+}
+
+.toggle-communes-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
 /* Grid des communes */
 .water-communes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
     gap: 24px;
+    transition: all 0.3s ease;
+}
+
+.water-communes-grid.hidden {
+    display: none;
 }
 
 /* Carte commune */
@@ -3220,646 +2556,10 @@ body, html {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
-   🌊 RIVIÈRES - GRAPHIQUES TEMPORELS
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.rivers-charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.river-chart-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.river-chart-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-}
-
-.river-chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--color-gray-100);
-}
-
-.river-chart-header h4 {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-}
-
-.river-chart-header h4 i {
-    color: var(--color-info);
-    font-size: 0.9em;
-}
-
-.station-badge {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Timeline Chart */
-.river-timeline-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    height: 150px;
-    padding: 10px;
-    background: linear-gradient(to top, var(--color-gray-50), white);
-    border-radius: var(--radius-md);
-    margin-bottom: 20px;
-    border: 1px solid var(--color-gray-200);
-}
-
-.timeline-point-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-}
-
-.timeline-point {
-    width: 100%;
-    min-width: 20px;
-    border-radius: 4px 4px 0 0;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    cursor: pointer;
-    position: relative;
-}
-
-.timeline-point:hover {
-    opacity: 0.85 !important;
-    transform: scaleY(1.05);
-}
-
-.timeline-label {
-    font-size: 0.7em;
-    color: var(--color-gray-600);
-    text-align: center;
-    font-weight: 500;
-}
-
-/* Stats */
-.river-chart-stats {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    padding-top: 15px;
-    border-top: 1px solid var(--color-gray-200);
-}
-
-.chart-stat {
-    text-align: center;
-}
-
-.chart-stat .stat-label {
-    font-size: 0.8em;
-    color: var(--color-gray-600);
-    display: block;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.chart-stat .stat-value {
-    font-size: 1.6em;
-    font-weight: 800;
-    color: var(--color-primary);
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📍 STATIONS - LISTE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.stations-list {
-    margin-top: 40px;
-}
-
-.stations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-}
-
-.station-card {
-    background: white;
-    border-radius: var(--radius-md);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.station-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.station-marker {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.3em;
-    flex-shrink: 0;
-}
-
-.station-info {
-    flex: 1;
-}
-
-.station-info h4 {
-    font-size: 0.95em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin: 0 0 8px 0;
-}
-
-.station-details {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.detail-badge {
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.75em;
-    font-weight: 600;
-}
-
-.detail-text {
-    font-size: 0.8em;
-    color: var(--color-gray-600);
-}
-
-.detail-text i {
-    margin-right: 4px;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   💧 NAPPES PHRÉATIQUES
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* Alertes */
-.alert-banner {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 24px;
-    border-radius: var(--radius-md);
-    margin-bottom: 24px;
-    font-size: 1em;
-    border-left: 4px solid;
-}
-
-.alert-banner.success {
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    border-color: var(--color-success);
-    color: #065f46;
-}
-
-.alert-banner.warning {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    border-color: var(--color-warning);
-    color: #92400e;
-}
-
-.alert-banner i {
-    font-size: 2em;
-}
-
-.alert-banner strong {
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 4px;
-}
-
-.alert-banner p {
-    margin: 0;
-    font-size: 0.95em;
-}
-
-/* Résumé des alertes */
-.alerts-summary {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.alert-badge {
-    padding: 10px 18px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    font-size: 0.9em;
-}
-
-.alert-badge.critique {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.alert-badge.alert {
-    background: #fed7aa;
-    color: #9a3412;
-}
-
-.alert-badge.vigilance {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.alert-badge i {
-    font-size: 1.1em;
-}
-
-/* Barres de nappes */
-.groundwater-section {
-    margin-top: 30px;
-}
-
-.groundwater-bars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-}
-
-.groundwater-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 20px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.groundwater-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
-}
-
-.groundwater-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--color-gray-100);
-}
-
-.groundwater-header h4 {
-    font-size: 1em;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin: 0;
-    line-height: 1.3;
-}
-
-.groundwater-icon {
-    font-size: 1.8em;
-}
-
-/* Barre verticale */
-.groundwater-bar-container {
-    position: relative;
-    height: 200px;
-    margin-bottom: 20px;
-}
-
-.groundwater-bar-bg {
-    position: relative;
-    height: 100%;
-    background: linear-gradient(to top, var(--color-gray-100), var(--color-gray-50));
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1px solid var(--color-gray-200);
-}
-
-.groundwater-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0 0 var(--radius-md) var(--radius-md);
-    transition: height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.groundwater-scale {
-    position: absolute;
-    right: -50px;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.scale-mark {
-    font-size: 0.7em;
-    color: var(--color-gray-600);
-    font-weight: 600;
-}
-
-/* Stats nappes */
-.groundwater-stats {
-    border-top: 2px solid var(--color-gray-100);
-    padding-top: 15px;
-}
-
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 0.9em;
-}
-
-.stat-row .stat-label {
-    color: var(--color-gray-600);
-    font-weight: 500;
-}
-
-.stat-row .stat-value {
-    font-weight: 700;
-    color: var(--color-gray-900);
-}
-
-.groundwater-alert {
-    margin-top: 15px;
-    padding: 10px 12px;
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85em;
-    font-weight: 600;
-}
-
-.groundwater-alert i {
-    font-size: 1.2em;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📊 SCORE GLOBAL - SIMPLIFIÉ
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-.quality-score-dashboard {
-    padding: 30px 20px;
-}
-
-/* Score principal - PLUS COMPACT */
-.global-score-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 30px;
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    margin-bottom: 30px;
-    border: 1px solid var(--color-gray-200);
-}
-
-.score-circle-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.score-circle {
-    width: 160px;
-    height: 160px;
-}
-
-.score-circle-bg {
-    fill: none;
-    stroke: var(--color-gray-200);
-    stroke-width: 12;
-}
-
-.score-circle-fill {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-    transform: rotate(-90deg);
-    transform-origin: center;
-    transition: stroke-dasharray 2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.score-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.score-value {
-    font-size: 2.5em;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.score-grade {
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-top: 5px;
-}
-
-.global-score-card h3 {
-    font-size: 1.2em;
-    color: var(--color-gray-900);
-    margin: 0;
-    font-weight: 700;
-}
-
-/* Détails - GRID COMPACT */
-.scores-breakdown {
-    margin-top: 30px;
-}
-
-.scores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.score-mini-card {
-    background: white;
-    border-radius: var(--radius-md);
-    padding: 18px;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border: 1px solid var(--color-gray-200);
-}
-
-.score-mini-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.mini-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3em;
-    margin-bottom: 12px;
-}
-
-.mini-label {
-    font-size: 0.85em;
-    color: var(--color-gray-600);
-    margin-bottom: 8px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.mini-score {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.mini-value {
-    font-size: 1.8em;
-    font-weight: 800;
-}
-
-.mini-grade {
-    font-size: 1.1em;
-    font-weight: 700;
-}
-
-.mini-progress {
-    height: 6px;
-    background: var(--color-gray-200);
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.mini-progress-bar {
-    height: 100%;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 3px;
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   📱 RESPONSIVE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-@media (max-width: 768px) {
-    .rivers-charts-grid,
-    .groundwater-bars-grid,
-    .scores-grid,
-    .stations-grid,
-    .water-communes-grid,
-    .water-stats-mini {
-        grid-template-columns: 1fr;
-    }
-    
-    .dashboard-header h2 {
-        font-size: 1.5em;
-    }
-    
-    .score-circle {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .score-value {
-        font-size: 2em;
-    }
-    
-    .water-search-input {
-        font-size: 0.9em;
-        padding: 12px 16px;
-    }
-    
-    .commune-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .commune-stats {
-        flex-direction: column;
-        gap: 8px;
-    }
-}
-
-/* ════════════════════════════════════════════════════════════════════════════════
-   ✨ ANIMATIONS
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.river-chart-card,
-.groundwater-card,
-.score-mini-card,
-.station-card {
-    animation: fadeInUp 0.5s ease backwards;
-}
-
-
-
-.river-chart-card:nth-child(1) { animation-delay: 0.1s; }
-.river-chart-card:nth-child(2) { animation-delay: 0.2s; }
-.river-chart-card:nth-child(3) { animation-delay: 0.3s; }
-.river-chart-card:nth-child(4) { animation-delay: 0.4s; }
-
-/* ════════════════════════════════════════════════════════════════════════════════
    🗺️ STYLES CESIUM - INFOBULLES SOURCES D'EAU
-   
    ════════════════════════════════════════════════════════════════════════════════ */
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📋 POPUP PRINCIPAL
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* POPUP PRINCIPAL */
 .cesium-water-popup {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     max-width: 450px;
@@ -3872,10 +2572,7 @@ body, html {
     border: 2px solid #e5e7eb;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📌 EN-TÊTE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* EN-TÊTE */
 .cesium-popup-header {
     padding: 20px;
     color: white;
@@ -3938,10 +2635,7 @@ body, html {
     color: white;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📝 CORPS DU POPUP
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* CORPS DU POPUP */
 .cesium-popup-body {
     padding: 20px;
     background: #ffffff;
@@ -4009,10 +2703,7 @@ body, html {
     color: #1f2937;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📅 DATES
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* DATES */
 .cesium-info-dates {
     display: flex;
     align-items: center;
@@ -4043,10 +2734,7 @@ body, html {
     font-weight: 700;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📌 PIED DE PAGE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* PIED DE PAGE */
 .cesium-popup-footer {
     padding: 14px 20px;
     background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
@@ -4066,10 +2754,7 @@ body, html {
     font-weight: 700;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   🎨 ANIMATIONS
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* ANIMATIONS */
 @keyframes popup-appear {
     from {
         opacity: 0;
@@ -4100,11 +2785,7 @@ body, html {
     animation: pulse 2s ease-in-out infinite;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   🎯 STYLE PAR TYPE DE SOURCE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* Couleurs personnalisées pour chaque type */
+/* STYLE PAR TYPE DE SOURCE */
 .cesium-popup-header[data-type="source"] {
     background: linear-gradient(935deg, #06b6d4, #0891b2);
 }
@@ -4121,10 +2802,7 @@ body, html {
     background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   📱 RESPONSIVE
-   ════════════════════════════════════════════════════════════════════════════════ */
-
+/* RESPONSIVE */
 @media (max-width: 500px) {
     .cesium-water-popup {
         max-width: 90vw;
@@ -4162,11 +2840,7 @@ body, html {
     }
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   🌐 STYLE DE L'INFOBOX CESIUM
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* Surcharge des styles par défaut de Cesium */
+/* STYLE DE L'INFOBOX CESIUM */
 .cesium-infoBox {
     background: rgba(1, 1, 1, 0.98) !important;
     backdrop-filter: blur(10px);
@@ -4193,22 +2867,16 @@ body, html {
     background: #080707 !important;
 }
 
-/* Forcer les couleurs de texte dans l'iframe */
 .cesium-infoBox iframe body {
     background: #080707 !important;
     color: #111827 !important;
 }
 
-/* ════════════════════════════════════════════════════════════════════════════════
-   ✨ EFFETS SPÉCIAUX
-   ════════════════════════════════════════════════════════════════════════════════ */
-
-/* Glow effect pour les éléments actifs */
+/* EFFETS SPÉCIAUX */
 .cesium-info-item:hover .cesium-info-icon {
     filter: drop-shadow(0 0 8px currentColor);
 }
 
-/* Effet de hover sur les badges de date */
 .cesium-date-badge:hover {
     border-color: #8b5cf6;
     transform: scale(1.05);
@@ -4235,50 +2903,1565 @@ body, html {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════════
-   🎨 THÈME SOMBRE (DÉSACTIVÉ PAR DÉFAUT)
-   Pour activer : décommenter le bloc ci-dessous
+   🌍 STYLES POLLUTION - ZONES GÉOGRAPHIQUES
+   Design moderne pour les zones de surveillance de la qualité de l'air
    ════════════════════════════════════════════════════════════════════════════════ */
 
-/*
-@media (prefers-color-scheme: dark) {
-    .cesium-water-popup {
-        background: #1f2937;
+/* SECTION PRINCIPALE */
+.pollution-section {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* STATS GLOBALES */
+.pollution-stats-global {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card-global {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.stat-card-global:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    color: white;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 2em;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85em;
+    color: #6b7280;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* FILTRES */
+.pollution-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* GRID DES ZONES */
+.pollution-zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* CARTE DE ZONE */
+.pollution-zone-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease backwards;
+}
+
+.pollution-zone-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* En-tête de carte */
+.zone-card-header {
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.zone-icon {
+    font-size: 2.5em;
+    line-height: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.zone-title {
+    flex: 1;
+}
+
+.zone-title h3 {
+    margin: 0 0 6px 0;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.zone-type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+/* Corps de carte */
+.zone-card-body {
+    padding: 20px;
+}
+
+.zone-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.zone-info-item {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.zone-info-item:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.zone-info-item.full {
+    grid-column: 1 / -1;
+}
+
+.zone-info-icon {
+    font-size: 1.5em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.zone-info-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.zone-info-label {
+    font-size: 0.7em;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.zone-info-value {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #111827;
+    word-wrap: break-word;
+}
+
+.zone-info-value.small {
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+/* Pied de carte */
+.zone-card-footer {
+    padding: 12px 20px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.zone-card-footer small {
+    font-size: 0.8em;
+    color: #6b7280;
+    font-family: 'Courier New', monospace;
+}
+
+.zone-card-footer strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+/* LÉGENDE */
+.pollution-legend {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.pollution-legend h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #111827;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.legend-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.legend-item span:last-child {
+    font-size: 0.9em;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+/* STATS PAR POLLUANT */
+.pollutant-stats-section {
+    margin-bottom: 40px;
+}
+
+.pollutant-stats-section h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.pollutant-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.pollutant-stat-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.pollutant-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pollutant-header {
+    padding: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.pollutant-icon {
+    font-size: 1.8em;
+}
+
+.pollutant-name {
+    font-size: 1.2em;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.pollutant-body {
+    padding: 16px;
+}
+
+.pollutant-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pollutant-metric:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    font-size: 0.85em;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 1em;
+    color: #111827;
+    font-weight: 700;
+}
+
+/* CONTAINER CARTE */
+#pollutionMapContainer {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+#pollutionMapContainer h3 {
+    margin: 0 0 16px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #111827;
+}
+
+#pollutionMap {
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .cesium-popup-body {
-        background: #1f2937;
-    }
-    
-    .cesium-info-item {
-        background: linear-gradient(135deg, #374151, #4b5563);
-        border-color: #4b5563;
-    }
-    
-    .cesium-info-item:hover {
-        background: linear-gradient(135deg, #4b5563, #6b7280);
-    }
-    
-    .cesium-info-label {
-        color: #9ca3af;
-    }
-    
-    .cesium-info-value {
-        color: #f9fafb;
-    }
-    
-    .cesium-date-badge {
-        background: #374151;
-        border-color: #4b5563;
-    }
-    
-    .cesium-popup-footer {
-        background: linear-gradient(135deg, #374151, #4b5563);
-        border-top-color: #4b5563;
-    }
-    
-    .cesium-popup-footer small,
-    .cesium-popup-footer strong {
-        color: #f9fafb;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-*/
+
+.pollution-zone-card:nth-child(1) { animation-delay: 0.1s; }
+.pollution-zone-card:nth-child(2) { animation-delay: 0.2s; }
+.pollution-zone-card:nth-child(3) { animation-delay: 0.3s; }
+.pollution-zone-card:nth-child(4) { animation-delay: 0.4s; }
+.pollution-zone-card:nth-child(5) { animation-delay: 0.5s; }
+.pollution-zone-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .pollution-zones-grid,
+    .pollutant-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pollution-stats-global {
+        grid-template-columns: 1fr;
+    }
+
+    .zone-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .stat-card-global {
+        padding: 16px;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .stat-value {
+        font-size: 1.6em;
+    }
+
+    .zone-card-header {
+        padding: 16px;
+    }
+
+    .zone-icon {
+        font-size: 2em;
+    }
+
+    .zone-title h3 {
+        font-size: 1.1em;
+    }
+
+    .legend-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .water-search-container {
+        flex-direction: column;
+    }
+
+    .water-search-input {
+        min-width: 100%;
+    }
+
+    .toggle-communes-btn {
+        width: 100%;
+    }
+
+    .water-communes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* EFFETS HOVER */
+.zone-info-item:hover .zone-info-icon {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+.filter-btn:not(.active):hover {
+    transform: translateY(-2px);
+}
+
+/* VARIANTES DE COULEURS */
+.zone-card-header,
+.zone-card-header *,
+.pollutant-header,
+.pollutant-header * {
+    color: white !important;
+}
+
+/* Scrollbar personnalisée */
+.zone-card-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.zone-card-body::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+}
+
+.zone-card-body::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 3px;
+}
+
+.zone-card-body::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════════
+   🎯 AMÉLIORATIONS BOUTON GÉOMÉTRIE - EFFET PREMIUM
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+.btn-view-geometry {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #8b764f 0%, #9e2c0f 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Space Grotesk', sans-serif;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Effet shimmer au survol */
+.btn-view-geometry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.btn-view-geometry:hover::before {
+    left: 100%;
+}
+
+.btn-view-geometry:hover {
+    background: linear-gradient(135deg, #617e69 0%, #648771 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.btn-view-geometry:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+/* Animation de pulse pour attirer l'attention */
+@keyframes button-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+    }
+}
+
+.btn-view-geometry:not(:hover) {
+    animation: button-pulse 2s ease-in-out infinite;
+}
+
+/* État désactivé */
+.btn-view-geometry:disabled {
+    background: linear-gradient(135deg, #9ca3af, #6b7280);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+/* Indicateur de chargement */
+.btn-view-geometry.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-view-geometry.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: button-spinner 0.6s linear infinite;
+}
+
+@keyframes button-spinner {
+    to { transform: rotate(360deg); }
+}
+
+/* Icône du bouton avec espacement */
+.btn-view-geometry i {
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.btn-view-geometry:hover i {
+    transform: scale(1.1) translateX(2px);
+}
+
+/* Focus visible pour l'accessibilité */
+.btn-view-geometry:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 2px;
+}
+
+/* État de succès après clic */
+.btn-view-geometry.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-view-geometry.success::after {
+    content: '✓';
+    position: absolute;
+    right: 15px;
+    font-size: 1.2em;
+    animation: checkmark-appear 0.3s ease;
+}
+
+@keyframes checkmark-appear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Variante compacte pour mobile */
+@media (max-width: 768px) {
+    .btn-view-geometry {
+        padding: 12px 16px;
+        font-size: 0.9em;
+    }
+    
+    .btn-view-geometry i {
+        font-size: 1em;
+    }
+}
+
+/* Effet de glow au hover */
+.btn-view-geometry:hover {
+    box-shadow: 
+        0 8px 25px rgba(102, 126, 234, 0.6),
+        0 0 30px rgba(102, 126, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Texture subtile */
+.btn-view-geometry::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 48%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 52%
+    );
+    background-size: 8px 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-view-geometry:hover::after {
+    opacity: 1;
+}
+/* ════════════════════════════════════════════════════════════════════════════════
+   🌡️ DASHBOARD TEMPÉRATURES - STYLES
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+.temperature-dashboard {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* EN-TÊTE */
+.temp-dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 20px;
+    color: white;
+}
+
+.temp-dashboard-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.temp-dashboard-header p {
+    margin: 0;
+    font-size: 1.1em;
+    opacity: 0.95;
+}
+
+/* STATS GLOBALES */
+.temp-stats-global {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.temp-stat-card {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease backwards;
+}
+
+.temp-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.temp-stat-card .stat-icon {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.temp-stat-card .stat-content {
+    flex: 1;
+}
+
+.temp-stat-card .stat-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.temp-stat-card .stat-label {
+    font-size: 1em;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.temp-stat-card .stat-date {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-top: 6px;
+}
+
+/* FILTRES */
+.temp-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* GRAPHIQUES */
+.temp-chart-wrapper {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.temp-chart-container {
+    height: 400px;
+    position: relative;
+}
+
+/* HEATMAP */
+.temp-heatmap-wrapper {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.temp-heatmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.heatmap-cell {
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.heatmap-month {
+    font-size: 0.85em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.heatmap-value {
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+/* TABLEAU */
+.temp-table-wrapper {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.temp-search-bar {
+    margin-bottom: 20px;
+}
+
+.temp-search-input {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1em;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.temp-search-input:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.temp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.temp-table thead {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.temp-table th {
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.temp-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+}
+
+.temp-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.temp-table tbody tr:hover {
+    background: #fef3c7;
+}
+
+/* ANALYSE PAR SAISON */
+.temp-season-analysis {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.season-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.season-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid;
+    transition: all 0.3s ease;
+}
+
+.season-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.season-header {
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.season-icon {
+    font-size: 2.5em;
+}
+
+.season-header h4 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: 800;
+}
+
+.season-body {
+    padding: 20px;
+}
+
+.season-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.season-stat:last-child {
+    border-bottom: none;
+}
+
+.season-stat .stat-label {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.season-stat .stat-value {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.temp-stat-card:nth-child(1) { animation-delay: 0.1s; }
+.temp-stat-card:nth-child(2) { animation-delay: 0.2s; }
+.temp-stat-card:nth-child(3) { animation-delay: 0.3s; }
+.temp-stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .temp-stats-global,
+    .season-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .temp-heatmap {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .temp-chart-container {
+        height: 300px;
+    }
+    
+    .temp-filters {
+        flex-direction: column;
+    }
+    
+    .filter-btn {
+        width: 100%;
+    }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════════
+   ♻️🗑️ DASHBOARDS DÉCHETS - VERSION SIMPLIFIÉE ET STABLE
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+/* Isolation des dashboards */
+.tri-selectif-dashboard,
+.decharge-dashboard {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* EN-TÊTES */
+.tri-dashboard-header,
+.decharge-dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    border-radius: 20px;
+    color: white;
+}
+
+.tri-dashboard-header {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.decharge-dashboard-header {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.tri-dashboard-header h2,
+.decharge-dashboard-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.tri-dashboard-header p,
+.decharge-dashboard-header p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* STATS GLOBALES */
+.tri-stats-global,
+.decharge-stats-global {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tri-stat-card,
+.decharge-stat-card {
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.tri-stat-card .stat-icon,
+.decharge-stat-card .stat-icon {
+    font-size: 2.5em;
+}
+
+.tri-stat-card .stat-value,
+.decharge-stat-card .stat-value {
+    font-size: 2em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.tri-stat-card .stat-label,
+.decharge-stat-card .stat-label {
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+/* GRAPHIQUES */
+.tri-chart-wrapper,
+.decharge-chart-wrapper,
+.tri-geo-section,
+.tri-table-wrapper,
+.decharge-table-wrapper,
+.tri-legend,
+.decharge-legend {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e5e7eb;
+}
+
+.tri-chart-container,
+.decharge-chart-container {
+    height: 350px;
+    position: relative;
+}
+
+.tri-explanation {
+    padding: 15px;
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.tri-explanation p {
+    margin: 0;
+    color: #1e40af;
+    font-size: 0.9em;
+}
+
+/* STATS GÉO */
+.tri-geo-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.geo-stat-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+}
+
+.geo-header {
+    padding: 15px;
+    color: white;
+    text-align: center;
+}
+
+.geo-header h4 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.geo-body {
+    padding: 15px;
+}
+
+.geo-metric {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.geo-metric:last-child {
+    border-bottom: none;
+}
+
+.geo-metric strong {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+/* FILTRES */
+.tri-filters,
+.decharge-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.decharge-filters .filter-btn.active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+}
+
+/* RECHERCHE */
+.tri-search-bar,
+.decharge-search-bar {
+    margin-bottom: 25px;
+}
+
+.tri-search-input,
+.decharge-search-input {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 1em;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+}
+
+.tri-search-input:focus {
+    border-color: #10b981;
+}
+
+.decharge-search-input:focus {
+    border-color: #f59e0b;
+}
+
+/* GRIDS */
+.tri-communes-grid,
+.decharge-sites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* CARTES */
+.tri-commune-card,
+.decharge-site-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.commune-card-header,
+.site-card-header {
+    padding: 18px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.commune-icon,
+.site-status-icon {
+    font-size: 2em;
+}
+
+.commune-title-section h4,
+.site-title-section h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.commune-insee,
+.site-commune {
+    font-size: 0.85em;
+}
+
+.commune-badge {
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.commune-card-body,
+.site-card-body {
+    padding: 18px;
+}
+
+.site-status-badge {
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: white;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.commune-info-row,
+.site-info-row {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.commune-info-row:last-child,
+.site-info-row:last-child {
+    margin-bottom: 0;
+}
+
+.commune-info-row .info-icon,
+.site-info-row .info-icon {
+    font-size: 1.3em;
+}
+
+.commune-info-row .info-label,
+.site-info-row .info-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.commune-info-row .info-value,
+.site-info-row .info-value {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #111827;
+}
+
+.commune-card-footer {
+    height: 5px;
+}
+
+/* ACTIONS */
+.site-card-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f3f4f6;
+}
+
+/* TABLEAUX */
+.table-scroll {
+    overflow-x: auto;
+}
+
+.tri-table,
+.decharge-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.tri-table thead {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.decharge-table thead {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.tri-table th,
+.tri-table td,
+.decharge-table th,
+.decharge-table td {
+    padding: 12px 10px;
+    text-align: left;
+}
+
+.tri-table th,
+.decharge-table th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+.tri-table td,
+.decharge-table td {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.dept-badge {
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+}
+
+.classe-badge,
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+}
+
+.performance-bar {
+    height: 18px;
+    background: #f3f4f6;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.performance-fill {
+    height: 100%;
+    border-radius: 9px;
+}
+
+/* BOUTONS */
+.btn-view-site {
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.site-card-actions .btn-view-site {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 15px;
+}
+
+/* LÉGENDES */
+.tri-legend h4,
+.decharge-legend h4 {
+    margin: 0 0 18px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #111827;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.legend-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+}
+
+.legend-item span {
+    font-size: 0.9em;
+    color: #374151;
+    font-weight: 600;
+}
+
+/* TITRES DE SECTION */
+.section-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 18px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .tri-communes-grid,
+    .decharge-sites-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tri-stats-global,
+    .decharge-stats-global {
+        grid-template-columns: 1fr;
+    }
+    
+    .tri-filters,
+    .decharge-filters {
+        flex-direction: column;
+    }
+    
+    .filter-btn {
+        width: 100%;
+    }
+    
+    .tri-geo-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .legend-items {
+        grid-template-columns: 1fr;
+    }
+}

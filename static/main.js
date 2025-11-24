@@ -1,11 +1,12 @@
 // ════════════════════════════════════════════════════════════════════════════════
 // 📚 LIVRE 3D INTERACTIF - CODE COMPLET AVEC MODULE QUALITÉ DE L'EAU
-// VERSION FINALE - Intégration complète
+// VERSION FINALE - Intégration complète avec Zones de Pollution Cesium
 // ════════════════════════════════════════════════════════════════════════════════
 
 // ════════════════════════════════════════════════════════════════════════════════
 // 🔧 CONFIGURATION GLOBALE
 // ════════════════════════════════════════════════════════════════════════════════
+import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js";
 
 // Token Cesium
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYmI0M2NkMy0xMzFjLTRmYmMtOTg3ZC03MDgxOWFmMGJmNzgiLCJpZCI6MzYwNDM1LCJpYXQiOjE3NjMxMzUzNjl9.xoeEZG1S5zP6292-7MBC6t1aZ-LnuarRwpvehU7bX-M';
@@ -18,6 +19,10 @@ const STATE = {
     viewers: {},
     charts: {}
 };
+
+// 🌍 NOUVEAU : Stockage des zones de pollution et viewers Cesium
+window.pollutionZonesData = {};
+window.cesiumViewers = {};
 
 // Coordonnées par défaut (Corse)
 const DEFAULT_COORDS = {
@@ -59,7 +64,7 @@ function normalizeDataToArray(data) {
  * Affiche une vue spécifique (home, book, etc.)
  * @param {string} viewName - Nom de la vue à afficher
  */
-function showView(viewName) {
+window.showView = function showView(viewName) {
     // Masquer toutes les vues
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -263,7 +268,7 @@ function addPageNumbers() {
 /**
  * Passe à la page suivante
  */
-function nextPage() {
+window.nextPage = function nextPage() {
     if (STATE.isAnimating || STATE.currentPage >= CITIES_DATA.length - 1) return;
     
     STATE.isAnimating = true;
@@ -302,7 +307,7 @@ function nextPage() {
 /**
  * Revient à la page précédente
  */
-function previousPage() {
+window.previousPage = function previousPage() {
     if (STATE.isAnimating || STATE.currentPage <= 0) return;
     
     STATE.isAnimating = true;
@@ -370,10 +375,10 @@ function createDashboard(city, index) {
         tables: '',
         pyramid: '',
         pollution: '',
+        TemperatureDashboard: '',
+        dechettri: '',
+        decharge: '',
         water: '',
-        rivers: '',
-        groundwater: '',
-        score: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -383,13 +388,12 @@ function createDashboard(city, index) {
     // Parcourir les données
     dataArray.forEach((dataObj, i) => {
         try {
-            // Pyramide des âges
+            // 1️⃣ PYRAMIDE DES ÂGES
             if (dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']) {
                 content.pyramid = createAgePyramid(dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']);
             }
-          
-           
-            // Démographie INSEE
+            
+            // 2️⃣ DÉMOGRAPHIE INSEE
             if (dataObj.insee_demographiques_depuis_1968) {
                 const result = processDemographicData(dataObj.insee_demographiques_depuis_1968);
                 content.tables = result.tables;
@@ -397,20 +401,34 @@ function createDashboard(city, index) {
                 content.deathRate += result.deathRate;
             }
             
-            // ✅ MODULE QUALITÉ DE L'EAU - ADAPTATION ET VISUALISATIONS
-            //const waterData = adaptWaterData(dataObj.DonneEau);
-
-             if (dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]) {
-                content.pollution += createWaterDashboard(dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]);}
+            // 3️⃣ EAU POTABLE PAR COMMUNE
+            if (dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]) {
+                content.water = createWaterDashboard(dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]);
+            }
             
-        } catch (error) {
+            // 4️⃣ POLLUTION - ZONES GÉOGRAPHIQUES
+            if (dataObj["DonneEnv"]) {
+                content.pollution = createPollutionDashboard(dataObj["DonneEnv"], index);
+            }
+             // 5️⃣ TEMPÉRATURES ET CLIMAT
+            if (dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"]) {   
+                content.TemperatureDashboard = createTemperatureDashboard(dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"], index);}
+                
+            // 6️⃣ TRI SÉLECTIF DES DÉCHETS
+            if (dataObj["tri-selectif-en-2012"]) {   
+                content.dechettri = createTriSelectifDashboard(dataObj["tri-selectif-en-2012"],index);}
+            
+            //decharge bruts 
+            if (dataObj["decharges-brutes-en-corse"]) {   
+                content.decharge = createDechargeDashboard(dataObj["decharges-brutes-en-corse"],index);}
+                
+            
+       
+       
+        }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
-        }
+            }
     });
-
-   
-
-
     
     // Diagramme circulaire
     const circleChart = createCircleChart(content.birthRate, content.deathRate);
@@ -424,11 +442,11 @@ function createDashboard(city, index) {
             <p class="city-subtitle">${city.description}</p>
         </div>
         ${content.water}
-        ${content.rivers}
-        ${content.groundwater}
-        ${content.score}
         ${content.pollution}
         ${content.pyramid}
+        ${content.TemperatureDashboard }   
+        ${content.dechettri}
+        ${content.decharge}
         ${circleChart}
         ${content.tables}
     `;
@@ -592,7 +610,7 @@ async function initCesium(index) {
     
     container.classList.add('loading');
     
-    const viewer = new Cesium.Viewer(containerId, {
+    window.viewer  = new Cesium.Viewer(containerId, {
         baseLayerPicker: false,
         geocoder: false,
         homeButton: false,
@@ -603,7 +621,8 @@ async function initCesium(index) {
         fullscreenButton: false,
         vrButton: false,
         infoBox: true,
-        selectionIndicator: true
+        selectionIndicator: true,
+        camera: true
     });
     
     // Terrain 3D
@@ -614,11 +633,16 @@ async function initCesium(index) {
     }
     
     STATE.viewers[index] = viewer;
+    window.cesiumViewers[index] = viewer; // 🔥 STOCKER GLOBALEMENT
     container.classList.remove('loading');
     
     // Charger les données
     loadCesiumData(viewer, city, index);
 }
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 🌍 CESIUM 
+// ════════════════════════════════════════════════════════════════════════════════
 
 /**
  * Charge les données dans Cesium
@@ -638,23 +662,14 @@ function loadCesiumData(viewer, city, index) {
             dataLoaded = true;
         }
         
-        // Pollution - recherche flexible
-        const pollutionKey = Object.keys(dataObj || {}).find(k =>
-            k.includes("DonneEnv") || k.includes("poll")
-        );
+        // ✅ SOURCES D'EAU - NAPPES PHRÉATIQUES
+        if (dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]) {
+            displayWaterSourcesCesium(viewer, dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]);
+            dataLoaded = true;
+        }
+   
         
-        
-        // ✅ MODULE QUALITÉ DE L'EAU - CARTE CESIUM
-       //(dataObj);
-        
-        displayWaterSourcesCesium(viewer, dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]);
-
     });
-    
-    // Vue par défaut si pas de données
-    if (!dataLoaded) {
-        setDefaultView(viewer, city);
-    }
 }
 
 /**
@@ -871,19 +886,6 @@ function createMapLegend(communes) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
-// 🌍 CESIUM - CARTE POLLUTION
-// ════════════════════════════════════════════════════════════════════════════════
-
-/**
- * Crée la carte de pollution
- * @param {Array} data - Données de pollution
- * @param {number} viewerIndex - Index du viewer
- */
-
-
-
-
-// ════════════════════════════════════════════════════════════════════════════════
 // 📊 VISUALISATIONS - PYRAMIDE DES ÂGES
 // ════════════════════════════════════════════════════════════════════════════════
 
@@ -1002,8 +1004,6 @@ function animatePyramid(ageRanges) {
         });
     }, ageRanges.length * 50 + 300);
 }
-
-
 
 // ════════════════════════════════════════════════════════════════════════════════
 // 💧 MODULE QUALITÉ DE L'EAU 
@@ -1162,6 +1162,7 @@ function createWaterDashboard(waterData) {
     
     return html;
 }
+
 /**
  * Filtre les communes selon la recherche
  */
@@ -1178,7 +1179,10 @@ function filterWaterCommunes() {
     });
 }
 
-function toggleWaterCommunes() {
+/**
+ * Toggle l'affichage des communes
+ */
+window.toggleWaterCommunes= function toggleWaterCommunes() {
     const container = document.getElementById("waterCommunes");
     const btn = document.getElementById("toggleCommunesBtn");
 
@@ -1191,8 +1195,6 @@ function toggleWaterCommunes() {
         : "🙈 Masquer les communes";
 }
 
-
-//MAP
 // ════════════════════════════════════════════════════════════════════════════════
 // 🗺️ FONCTION CESIUM AMÉLIORÉE - SOURCES D'EAU
 // ════════════════════════════════════════════════════════════════════════════════
@@ -1506,7 +1508,7 @@ function createEnhancedDescription(source, isActive, colorData) {
  * @param {string} dateStr - Date ISO
  * @returns {string} Date formatée
  */
-function formatDate(dateStr) {
+/**function formatDate(dateStr) {
     if (!dateStr) return null;
     try {
         const date = new Date(dateStr);
@@ -1541,14 +1543,1186 @@ function animatePointAppearance(entity) {
     }, 30);
 }
 
+// ════════════════════════════════════════════════════════════════════════════════
+// 🌍 FONCTION POLLUTION - AVEC ZONES GÉOGRAPHIQUES
+// ════════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Crée le dashboard de pollution avec zones géographiques (ZAS)
+ * @param {Array} pollutionData - Données de pollution avec géométries
+ * @param {number} pageIndex - Index de la page courante
+ * @returns {string} HTML du dashboard
+ */
+function createPollutionDashboard(pollutionData, pageIndex) {
+    if (!Array.isArray(pollutionData) || pollutionData.length === 0) {
+        return '';
+    }
+
+    console.log(`🌍 Traitement de ${pollutionData.length} zone(s) de pollution pour la page ${pageIndex}`);
+
+    // 🔥 Initialiser le stockage pour cette page
+    if (!window.pollutionZonesData[pageIndex]) {
+        window.pollutionZonesData[pageIndex] = [];
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // 1️⃣ GROUPER PAR ZONE ET POLLUANT
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const zonesByType = {
+        'ZRE': [], // Zone à Risque d'Exposition
+        'ZAR': [], // Zone Administrative de Référence
+        'Autre': []
+    };
+
+    const pollutantStats = {};
+    const zones = [];
+
+    pollutionData.forEach(item => {
+        const typeZas = item.type_zas || 'Autre';
+        const pollutant = item.nom_poll || 'Inconnu';
+        
+        // Grouper par type
+        if (zonesByType[typeZas]) {
+            zonesByType[typeZas].push(item);
+        } else {
+            zonesByType['Autre'].push(item);
+        }
+
+        // Stats par polluant
+        if (!pollutantStats[pollutant]) {
+            pollutantStats[pollutant] = {
+                count: 0,
+                totalPop: 0,
+                totalSurf: 0,
+                zones: []
+            };
+        }
+        pollutantStats[pollutant].count++;
+        pollutantStats[pollutant].totalPop += item.pop_insee || 0;
+        pollutantStats[pollutant].totalSurf += item.surf_total || 0;
+        pollutantStats[pollutant].zones.push(item.lib_zas);
+
+        // Liste des zones
+        const zoneObj = {
+            id: item.id_zas,
+            name: item.lib_zas,
+            type: item.type_zas,
+            pollutant: item.nom_poll,
+            population: item.pop_insee,
+            surface: item.surf_total,
+            year: item.annee,
+            limit: item.valeur_reg,
+            geometry: item.geo_shape // 🔥 IMPORTANT : garder la géométrie complète
+        };
+        
+        zones.push(zoneObj);
+    });
+
+    // 🔥 STOCKER TOUTES LES ZONES POUR CETTE PAGE
+    window.pollutionZonesData[pageIndex] = zones;
+    console.log(`✅ ${zones.length} zones stockées pour la page ${pageIndex}`);
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // 2️⃣ CONSTRUIRE LE HTML
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    let html = `
+        <div class="pollution-section">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-wind"></i> Qualité de l'Air - Zones de Surveillance</h2>
+                <p>Zones Administratives de Surveillance (ZAS) - Suivi des polluants atmosphériques</p>
+            </div>
+
+            <!-- Stats globales -->
+            <div class="pollution-stats-global">
+                <div class="stat-card-global">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">${pollutionData.length}</div>
+                        <div class="stat-label">Zone${pollutionData.length > 1 ? 's' : ''} de surveillance</div>
+                    </div>
+                </div>
+
+                <div class="stat-card-global">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">${formatNumber(Object.values(pollutantStats).reduce((sum, p) => sum + p.totalPop, 0))}</div>
+                        <div class="stat-label">Population exposée</div>
+                    </div>
+                </div>
+
+                <div class="stat-card-global">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">${Object.keys(pollutantStats).length}</div>
+                        <div class="stat-label">Polluant${Object.keys(pollutantStats).length > 1 ? 's' : ''} surveillé${Object.keys(pollutantStats).length > 1 ? 's' : ''}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtres par type de zone -->
+            <div class="pollution-filters">
+                <button class="filter-btn active" onclick="filterPollutionZones('all')">
+                    📊 Toutes les zones (${pollutionData.length})
+                </button>
+                ${zonesByType['ZRE'].length > 0 ? `
+                    <button class="filter-btn" onclick="filterPollutionZones('ZRE')">
+                        ⚠️ ZRE - Zones à Risque (${zonesByType['ZRE'].length})
+                    </button>
+                ` : ''}
+                ${zonesByType['ZAR'].length > 0 ? `
+                    <button class="filter-btn" onclick="filterPollutionZones('ZAR')">
+                        🏛️ ZAR - Zones Administratives (${zonesByType['ZAR'].length})
+                    </button>
+                ` : ''}
+            </div>
+
+            <!-- Grid des zones -->
+            <div class="pollution-zones-grid">
+    `;
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // 3️⃣ CARTES PAR ZONE
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    zones.forEach((zone, index) => {
+        const typeIcon = zone.type === 'ZRE' ? '⚠️' : zone.type === 'ZAR' ? '🏛️' : '📍';
+        const typeColor = zone.type === 'ZRE' ? '#ef4444' : zone.type === 'ZAR' ? '#3b82f6' : '#6b7280';
+        const typeName = zone.type === 'ZRE' ? 'Zone à Risque d\'Exposition' : 
+                        zone.type === 'ZAR' ? 'Zone Administrative de Référence' : 
+                        'Zone de surveillance';
+
+        html += `
+            <div class="pollution-zone-card" data-zone-type="${zone.type}" data-zone-id="${zone.id}">
+                <div class="zone-card-header" style="background: linear-gradient(135deg, ${typeColor}, ${typeColor}dd);">
+                    <div class="zone-icon">${typeIcon}</div>
+                    <div class="zone-title">
+                        <h3>${zone.name}</h3>
+                        <span class="zone-type-badge">${zone.type}</span>
+                    </div>
+                </div>
+
+                <div class="zone-card-body">
+                    <div class="zone-info-grid">
+                        <!-- Polluant -->
+                        <div class="zone-info-item">
+                            <div class="zone-info-icon" style="color: ${getPollutantColor(zone.pollutant)};">
+                                ${getPollutantIcon(zone.pollutant)}
+                            </div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Polluant surveillé</div>
+                                <div class="zone-info-value">${zone.pollutant}</div>
+                            </div>
+                        </div>
+
+                        <!-- Valeur réglementaire -->
+                        <div class="zone-info-item">
+                            <div class="zone-info-icon">⚖️</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Valeur réglementaire</div>
+                                <div class="zone-info-value">${zone.limit || 'N/A'}</div>
+                            </div>
+                        </div>
+
+                        <!-- Population -->
+                        <div class="zone-info-item">
+                            <div class="zone-info-icon">👥</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Population exposée</div>
+                                <div class="zone-info-value">${formatNumber(zone.population)} hab.</div>
+                            </div>
+                        </div>
+
+                        <!-- Surface -->
+                        <div class="zone-info-item">
+                            <div class="zone-info-icon">📐</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Surface totale</div>
+                                <div class="zone-info-value">${formatNumber(zone.surface)} ha</div>
+                            </div>
+                        </div>
+
+                        <!-- Année -->
+                        <div class="zone-info-item full">
+                            <div class="zone-info-icon">📅</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Année de référence</div>
+                                <div class="zone-info-value">${zone.year}</div>
+                            </div>
+                        </div>
+
+                        <!-- Type détaillé -->
+                        <div class="zone-info-item full">
+                            <div class="zone-info-icon">ℹ️</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Type de zone</div>
+                                <div class="zone-info-value small">${typeName}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🔥 Bouton pour voir la géométrie - ADAPTÉ POUR CESIUM -->
+                    ${zone.geometry ? `
+                        <button class="btn-view-geometry" 
+                                onclick="showZoneGeometryCesiumById(${index})"
+                                title="Afficher cette zone sur la carte 3D">
+                            🗺️ Voir la zone en 3D
+                        </button>
+                    ` : ''}
+                </div>
+
+                <div class="zone-card-footer">
+                    <small><strong>ID:</strong> ${zone.id}</small>
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+            </div>
+
+            <!-- Légende -->
+            <div class="pollution-legend">
+                <h3>📖 Légende</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-badge" style="background: #ef4444;">⚠️ ZRE</span>
+                        <span>Zone à Risque d'Exposition - Zones où la pollution dépasse les seuils</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-badge" style="background: #3b82f6;">🏛️ ZAR</span>
+                        <span>Zone Administrative de Référence - Zones de surveillance standard</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats par polluant -->
+            <div class="pollutant-stats-section">
+                <h3>📊 Statistiques par polluant</h3>
+                <div class="pollutant-stats-grid">
+    `;
+
+    Object.entries(pollutantStats).forEach(([pollutant, stats]) => {
+        const color = getPollutantColor(pollutant);
+        const icon = getPollutantIcon(pollutant);
+
+        html += `
+            <div class="pollutant-stat-card">
+                <div class="pollutant-header" style="background: ${color};">
+                    <span class="pollutant-icon">${icon}</span>
+                    <span class="pollutant-name">${pollutant}</span>
+                </div>
+                <div class="pollutant-body">
+                    <div class="pollutant-metric">
+                        <span class="metric-label">Zones surveillées</span>
+                        <span class="metric-value">${stats.count}</span>
+                    </div>
+                    <div class="pollutant-metric">
+                        <span class="metric-label">Population totale</span>
+                        <span class="metric-value">${formatNumber(stats.totalPop)} hab.</span>
+                    </div>
+                    <div class="pollutant-metric">
+                        <span class="metric-label">Surface totale</span>
+                        <span class="metric-value">${formatNumber(stats.totalSurf)} ha</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    html += `
+                </div>
+            </div>
+        </div>
+    `;
+
+    return html;
+}
 
 // ════════════════════════════════════════════════════════════════════════════════
-// 💧 MODULE QUALITÉ DE L'EAU - VISUALISATIONS
+// 🎨 FONCTIONS UTILITAIRES
 // ════════════════════════════════════════════════════════════════════════════════
 
+/**
+ * Retourne la couleur selon le polluant
+ */
+function getPollutantColor(pollutant) {
+    const colors = {
+        'NO2': '#ef4444',    // Rouge
+        'PM10': '#f59e0b',   // Orange
+        'PM2.5': '#d97706',  // Orange foncé
+        'O3': '#06b6d4',     // Cyan
+        'SO2': '#8b5cf6',    // Violet
+        'CO': '#6b7280',     // Gris
+        'default': '#3b82f6' // Bleu
+    };
+    return colors[pollutant] || colors['default'];
+}
+
+/**
+ * Retourne l'icône selon le polluant
+ */
+function getPollutantIcon(pollutant) {
+    const icons = {
+        'NO2': '🚗',     // Dioxyde d'azote (trafic)
+        'PM10': '🏭',    // Particules (industrie)
+        'PM2.5': '💨',   // Particules fines
+        'O3': '☀️',      // Ozone
+        'SO2': '🏭',     // Dioxyde de soufre
+        'CO': '🔥',      // Monoxyde de carbone
+        'default': '🌫️'  // Défaut
+    };
+    return icons[pollutant] || icons['default'];
+}
+
+/**
+ * Formate un nombre avec espaces
+ */
+function formatNumber(num) {
+    if (!num && num !== 0) return 'N/A';
+    return Math.round(num).toLocaleString('fr-FR');
+}
+
+/**
+ * Filtre les zones par type
+ */
+function filterPollutionZones(type) {
+    const cards = document.querySelectorAll('.pollution-zone-card');
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    // Mettre à jour les boutons
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if ((type === 'all' && btn.textContent.includes('Toutes')) ||
+            (type !== 'all' && btn.textContent.includes(type))) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Filtrer les cartes
+    cards.forEach(card => {
+        if (type === 'all') {
+            card.style.display = 'block';
+        } else {
+            card.style.display = card.dataset.zoneType === type ? 'block' : 'none';
+        }
+    });
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 🗺️ FONCTIONS CESIUM POUR AFFICHAGE DES ZONES DE POLLUTION
+// ════════════════════════════════════════════════════════════════════════════════
+
+/**
+ * 🔥 FONCTION WRAPPER - Affiche une zone spécifique depuis un bouton
+ * @param {number} zoneIndex - Index de la zone dans le tableau
+ */
+window.showZoneGeometryCesiumById= function showZoneGeometryCesiumById(zoneIndex) {
+    console.log(`🗺️ Demande d'affichage de la zone index ${zoneIndex} (page ${STATE.currentPage})`);
+    
+    // Récupérer le viewer de la page actuelle
+    const viewer = window.cesiumViewers[STATE.currentPage];
+    if (!viewer) {
+        alert('⚠️ Le viewer Cesium n\'est pas encore initialisé. Veuillez patienter quelques secondes.');
+        console.error('❌ Viewer non trouvé pour la page', STATE.currentPage);
+        return;
+    }
+    
+    // Récupérer les zones de la page actuelle
+    const zones = window.pollutionZonesData[STATE.currentPage];
+    if (!zones || zones.length === 0) {
+        alert('⚠️ Aucune zone de pollution disponible sur cette page');
+        console.error('❌ Pas de zones pour la page', STATE.currentPage);
+        return;
+    }
+    
+    // Récupérer la zone spécifique
+    const zone = zones[zoneIndex];
+    if (!zone) {
+        alert(`⚠️ Zone ${zoneIndex} introuvable`);
+        console.error(`❌ Zone ${zoneIndex} n'existe pas dans`, zones);
+        return;
+    }
+    
+    console.log(`✅ Zone trouvée: "${zone.name}"`, zone);
+    
+    // Appeler la fonction d'affichage principale
+    showZoneGeometryCesiumSingle(viewer, zone, zoneIndex);
+}
+
+/**
+ * 🗺️ Affiche UNE SEULE zone de pollution dans Cesium
+ * @param {Cesium.Viewer} viewer - Viewer Cesium
+ * @param {Object} zone - Données de la zone
+ * @param {number} zoneIndex - Index de la zone
+ */
+/**
+ * 🗺️ Affiche UNE SEULE zone de pollution dans Cesium
+ * @param {Cesium.Viewer} viewer - Viewer Cesium
+ * @param {Object} zone - Données de la zone
+ * @param {number} zoneIndex - Index de la zone
+ */
+function showZoneGeometryCesiumSingle(viewer, zone, zoneIndex) {
+    console.log(`🗺️ Affichage de la zone "${zone.name}" sur Cesium`);
+    
+    try {
+        // 1️⃣ Extraire les coordonnées - GESTION AMÉLIORÉE
+        let coordinates = [];
+        let geometry = null;
+        
+        // Détecter la structure de la géométrie
+        if (zone.geometry) {
+            // Cas 1: GeoJSON Feature (type: 'Feature')
+            if (zone.geometry.type === 'Feature' && zone.geometry.geometry) {
+                geometry = zone.geometry.geometry;
+                console.log('📍 Structure détectée: GeoJSON Feature');
+            }
+            // Cas 2: GeoJSON direct (type: 'Polygon' ou 'MultiPolygon')
+            else if (zone.geometry.type === 'Polygon' || zone.geometry.type === 'MultiPolygon') {
+                geometry = zone.geometry;
+                console.log('📍 Structure détectée: GeoJSON direct');
+            }
+            // Cas 3: Objet avec geometry imbriqué
+            else if (zone.geometry.geometry) {
+                geometry = zone.geometry.geometry;
+                console.log('📍 Structure détectée: Géométrie imbriquée');
+            }
+        }
+        
+        // Extraire les coordonnées selon le type
+        if (geometry) {
+            if (geometry.type === 'Polygon') {
+                coordinates = geometry.coordinates[0];
+                console.log(`✅ Polygon trouvé avec ${geometry.coordinates[0].length} points`);
+            } 
+            else if (geometry.type === 'MultiPolygon') {
+                // Prendre le premier polygone du MultiPolygon
+                coordinates = geometry.coordinates[0][0];
+                console.log(`✅ MultiPolygon trouvé, utilisation du premier polygone avec ${geometry.coordinates[0][0].length} points`);
+            }
+            else if (geometry.coordinates) {
+                // Cas générique
+                const coords = geometry.coordinates;
+                coordinates = Array.isArray(coords[0]) ? coords[0] : coords;
+                console.log(`✅ Coordonnées génériques trouvées: ${coordinates.length} points`);
+            }
+        }
+        
+        // Vérification finale
+        if (!coordinates || coordinates.length === 0) {
+            console.error('❌ Structure de la géométrie:', zone.geometry);
+            alert('⚠️ Cette zone n\'a pas de coordonnées géographiques valides.\n\nStructure détectée:\n' + JSON.stringify(zone.geometry, null, 2).substring(0, 200));
+            return;
+        }
+        
+        console.log(`✅ ${coordinates.length} coordonnées extraites`);
+        
+        // 2️⃣ Convertir en Cartesian3
+        const positions = [];
+        let invalidCount = 0;
+        
+        coordinates.forEach((coord, idx) => {
+            const lon = coord[0] || coord.longitude || coord.lon;
+            const lat = coord[1] || coord.latitude || coord.lat;
+            
+            if (lon === undefined || lat === undefined || isNaN(lon) || isNaN(lat)) {
+                console.warn(`⚠️ Coordonnée ${idx} invalide:`, coord);
+                invalidCount++;
+                return;
+            }
+            
+            // Vérifier que les coordonnées sont dans des plages valides
+            if (lon < -180 || lon > 180 || lat < -90 || lat > 90) {
+                console.warn(`⚠️ Coordonnée ${idx} hors limites: lon=${lon}, lat=${lat}`);
+                invalidCount++;
+                return;
+            }
+            
+            positions.push(Cesium.Cartesian3.fromDegrees(lon, lat));
+        });
+        
+        if (invalidCount > 0) {
+            console.warn(`⚠️ ${invalidCount} coordonnée(s) invalide(s) ignorée(s)`);
+        }
+        
+        if (positions.length < 3) {
+            alert(`⚠️ Pas assez de coordonnées valides pour tracer la zone.\n\n${positions.length} coordonnées valides sur ${coordinates.length} totales.`);
+            return;
+        }
+        
+        console.log(`✅ ${positions.length} positions Cesium créées`);
+        
+        // 3️⃣ Couleur selon le polluant
+        const pollutantColor = getPollutantColor(zone.pollutant);
+        const cesiumColor = Cesium.Color.fromCssColorString(pollutantColor);
+        
+        // 4️⃣ Supprimer l'ancienne entité si elle existe
+        const entityId = `pollution-zone-${zoneIndex}`;
+        const existingEntity = viewer.entities.getById(entityId);
+        if (existingEntity) {
+            viewer.entities.remove(existingEntity);
+            console.log('🗑️ Ancienne entité supprimée');
+        }
+        
+        // 5️⃣ Créer l'entité Cesium
+        const entity = viewer.entities.add({
+            id: entityId,
+            name: zone.name,
+            polygon: {
+                hierarchy: new Cesium.PolygonHierarchy(positions),
+                material: cesiumColor.withAlpha(0.6),
+                outline: true,
+                outlineColor: cesiumColor,
+                outlineWidth: 3,
+                height: 0,
+                extrudedHeight: 500, // Hauteur d'extrusion
+                heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
+            },
+            description: createPollutionZoneDescription(zone)
+        });
+        
+        console.log(`✅ Entité Cesium créée avec ID: ${entityId}`);
+        
+        // 6️⃣ Calculer la distance de zoom appropriée
+        const boundingSphere = Cesium.BoundingSphere.fromPoints(positions);
+        const distance = Math.max(
+            boundingSphere.radius * 3, // Au moins 3x le rayon
+            10000 // Minimum 10km
+        );
+        
+        console.log(`📏 Distance de zoom calculée: ${Math.round(distance)}m`);
+        
+        // 7️⃣ Zoomer sur la zone avec animation
+        viewer.flyTo(entity, {
+            duration: 2.5,
+            offset: new Cesium.HeadingPitchRange(
+                Cesium.Math.toRadians(0),   // heading
+                Cesium.Math.toRadians(-45), // pitch
+                distance                     // range
+            )
+        }).then(() => {
+            console.log('✅ Animation de zoom terminée');
+            
+            // 8️⃣ Ouvrir automatiquement l'infobulle
+            setTimeout(() => {
+                viewer.selectedEntity = entity;
+                console.log('✅ Infobulle ouverte');
+            }, 500);
+        }).catch(err => {
+            console.error('❌ Erreur lors du zoom:', err);
+        });
+        
+        console.log(`✅ Zone "${zone.name}" affichée avec succès`);
+        
+    } catch (error) {
+        console.error('❌ Erreur lors de l\'affichage de la zone:', error);
+        console.error('Stack trace:', error.stack);
+        alert(`Erreur technique lors de l'affichage de la zone:\n\n${error.message}`);
+    }
+}
+/**
+ * 📝 Crée la description HTML pour une zone de pollution dans Cesium
+ * @param {Object} zone - Données de la zone
+ * @returns {string} HTML
+ */
+function createPollutionZoneDescription(zone) {
+    const typeColor = zone.type === 'ZRE' ? '#ef4444' : '#3b82f6';
+    const typeIcon = zone.type === 'ZRE' ? '⚠️' : '🏛️';
+    const pollutantIcon = getPollutantIcon(zone.pollutant);
+    
+    return `
+        <div style="font-family: 'Space Grotesk', sans-serif; min-width: 350px; max-width: 400px;">
+            <div style="background: linear-gradient(135deg, ${typeColor}, ${typeColor}dd); 
+                        padding: 15px; margin: -9px -9px 15px -9px; border-radius: 8px 8px 0 0;">
+                <h3 style="margin: 0; color: white; font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5em;">${typeIcon}</span>
+                    ${zone.name}
+                </h3>
+                <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 0.9em; font-weight: 600;">
+                    ${zone.type} - ${zone.type === 'ZRE' ? 'Zone à Risque d\'Exposition' : 'Zone Administrative de Référence'}
+                </p>
+            </div>
+            
+            <div style="padding: 0 5px;">
+                <div style="background: ${getPollutantColor(zone.pollutant)}22; 
+                            padding: 12px; border-radius: 8px; margin-bottom: 12px; 
+                            border-left: 4px solid ${getPollutantColor(zone.pollutant)};">
+                    <div style="font-size: 1.1em; font-weight: 700; color: #1f2937; margin-bottom: 4px;">
+                        ${pollutantIcon} Polluant: ${zone.pollutant}
+                    </div>
+                    <div style="font-size: 0.9em; color: #6b7280;">
+                        ⚖️ Valeur réglementaire: <strong>${zone.limit || 'N/A'}</strong>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                    <div style="background: #f3f4f6; padding: 10px; border-radius: 6px; text-align: center;">
+                        <div style="font-size: 1.5em; font-weight: 800; color: #8b5cf6;">
+                            ${formatNumber(zone.population)}
+                        </div>
+                        <div style="font-size: 0.85em; color: #6b7280; margin-top: 4px;">
+                            👥 Population exposée
+                        </div>
+                    </div>
+                    <div style="background: #f3f4f6; padding: 10px; border-radius: 6px; text-align: center;">
+                        <div style="font-size: 1.5em; font-weight: 800; color: #3b82f6;">
+                            ${formatNumber(zone.surface)}
+                        </div>
+                        <div style="font-size: 0.85em; color: #6b7280; margin-top: 4px;">
+                            📐 Surface (ha)
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #f9fafb; padding: 10px; border-radius: 6px; text-align: center;">
+                    <div style="font-size: 0.9em; color: #6b7280;">
+                        📅 Année de référence: <strong style="color: #1f2937;">${zone.year}</strong>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 12px; padding: 10px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
+                    <div style="font-size: 0.85em; color: #9a3412;">
+                        <strong>🔬 ID Zone:</strong> ${zone.id}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 
+/**
+ * ════════════════════════════════════════════════════════════════════════════════
+ * 🌡️ DASHBOARD TEMPÉRATURES - CONCOURS T'ADAVIS
+ * ════════════════════════════════════════════════════════════════════════════════
+ */
 
+function createTemperatureDashboard(temperatureData, pageIndex) {
+    console.log('📊 Création du dashboard températures pour page:', pageIndex);
+    
+    // Tri des données par date
+    const sortedData = [...temperatureData].sort((a, b) => 
+        new Date(a.date) - new Date(b.date)
+    );
+    
+    // Calcul des statistiques
+    const stats = calculateTemperatureStats(sortedData);
+    
+    // Container principal
+    const container = document.createElement('div');
+    container.className = 'temperature-dashboard';
+    container.innerHTML = `
+        <!-- EN-TÊTE -->
+        <div class="temp-dashboard-header">
+            <h2><i class="fas fa-temperature-high"></i> Analyse des Températures - ${sortedData[0]?.region || 'Région'}</h2>
+            <p>Données météorologiques de ${sortedData.length} mesures</p>
+        </div>
+
+        <!-- STATISTIQUES GLOBALES -->
+        <div class="temp-stats-global">
+            <div class="temp-stat-card" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-content">
+                    <div class="stat-value">${stats.maxTemp.toFixed(1)}°C</div>
+                    <div class="stat-label">Température Max</div>
+                    <div class="stat-date">${formatDate(stats.maxTempDate)}</div>
+                </div>
+            </div>
+            
+            <div class="temp-stat-card" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                <div class="stat-icon">❄️</div>
+                <div class="stat-content">
+                    <div class="stat-value">${stats.minTemp.toFixed(1)}°C</div>
+                    <div class="stat-label">Température Min</div>
+                    <div class="stat-date">${formatDate(stats.minTempDate)}</div>
+                </div>
+            </div>
+            
+            <div class="temp-stat-card" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <div class="stat-value">${stats.avgTemp.toFixed(1)}°C</div>
+                    <div class="stat-label">Température Moyenne</div>
+                    <div class="stat-date">${sortedData.length} mesures</div>
+                </div>
+            </div>
+            
+            <div class="temp-stat-card" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                <div class="stat-icon">📈</div>
+                <div class="stat-content">
+                    <div class="stat-value">${stats.amplitude.toFixed(1)}°C</div>
+                    <div class="stat-label">Amplitude</div>
+                    <div class="stat-date">Écart Max-Min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILTRES -->
+        <div class="temp-filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-calendar"></i> Toutes les dates
+            </button>
+            <button class="filter-btn" data-filter="spring">
+                <i class="fas fa-leaf"></i> Printemps
+            </button>
+            <button class="filter-btn" data-filter="summer">
+                <i class="fas fa-sun"></i> Été
+            </button>
+            <button class="filter-btn" data-filter="autumn">
+                <i class="fas fa-cloud"></i> Automne
+            </button>
+            <button class="filter-btn" data-filter="winter">
+                <i class="fas fa-snowflake"></i> Hiver
+            </button>
+        </div>
+
+        <!-- GRAPHIQUE LINÉAIRE -->
+        <div class="temp-chart-wrapper">
+            <h3 class="section-title">
+                <i class="fas fa-chart-line"></i> Évolution des Températures
+            </h3>
+            <div class="temp-chart-container">
+                <canvas id="tempLineChart-${pageIndex}"></canvas>
+            </div>
+        </div>
+
+        <!-- GRAPHIQUE EN BARRES - COMPARAISON -->
+        <div class="temp-chart-wrapper">
+            <h3 class="section-title">
+                <i class="fas fa-chart-bar"></i> Comparaison Min/Max/Moyenne
+            </h3>
+            <div class="temp-chart-container">
+                <canvas id="tempBarChart-${pageIndex}"></canvas>
+            </div>
+        </div>
+
+        <!-- HEATMAP PAR MOIS -->
+        <div class="temp-heatmap-wrapper">
+            <h3 class="section-title">
+                <i class="fas fa-th"></i> Carte Thermique Mensuelle
+            </h3>
+            <div id="tempHeatmap-${pageIndex}" class="temp-heatmap"></div>
+        </div>
+
+        <!-- TABLEAU DÉTAILLÉ -->
+        <div class="temp-table-wrapper">
+            <h3 class="section-title">
+                <i class="fas fa-table"></i> Détail des Mesures
+            </h3>
+            <div class="temp-search-bar">
+                <input type="text" id="tempSearch-${pageIndex}" placeholder="🔍 Rechercher par date AAAA-MM-JJ..." class="temp-search-input">
+                 <button id="toggleCommunesBtn" 
+                         class="toggle-communes-btn" 
+                            onclick="toggleWaterCommunes()">
+                         👁️ Masquer les communes
+                 </button>
+                </div>
+            <div class="table-scroll">
+                <table class="temp-table" id="tempTable-${pageIndex}">
+                    <thead>
+                        <tr>
+                            <th>📅 Date</th>
+                            <th>❄️ T° Min (°C)</th>
+                            <th>🔥 T° Max (°C)</th>
+                            <th>📊 T° Moyenne (°C)</th>
+                            <th>📈 Amplitude (°C)</th>
+                            <th>🌡️ Indicateur</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tempTableBody-${pageIndex}">
+                        ${generateTableRows(sortedData)}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ANALYSE PAR SAISON -->
+        <div class="temp-season-analysis">
+            <h3 class="section-title">
+                <i class="fas fa-calendar-alt"></i> Analyse par Saison
+            </h3>
+            <div class="season-cards">
+                ${generateSeasonCards(sortedData)}
+            </div>
+        </div>
+    `;
+    
+    // Initialisation des graphiques après insertion dans le DOM
+    setTimeout(() => {
+        initTemperatureCharts(sortedData, pageIndex);
+        initHeatmap(sortedData, pageIndex);
+        initFilters(sortedData, pageIndex);
+        initSearch(sortedData, pageIndex);
+    }, 100);
+    
+    return container.outerHTML;
+}
+
+/**
+ * Calcul des statistiques
+ */
+function calculateTemperatureStats(data) {
+    const temps = data.map(d => d.tmoy_degc);
+    const maxTemps = data.map(d => d.tmax_degc);
+    const minTemps = data.map(d => d.tmin_degc);
+    
+    const maxTemp = Math.max(...maxTemps);
+    const minTemp = Math.min(...minTemps);
+    const avgTemp = temps.reduce((a, b) => a + b, 0) / temps.length;
+    
+    const maxTempEntry = data.find(d => d.tmax_degc === maxTemp);
+    const minTempEntry = data.find(d => d.tmin_degc === minTemp);
+    
+    return {
+        maxTemp,
+        minTemp,
+        avgTemp,
+        amplitude: maxTemp - minTemp,
+        maxTempDate: maxTempEntry.date,
+        minTempDate: minTempEntry.date
+    };
+}
+
+/**
+ * Génération des lignes du tableau
+ */
+function generateTableRows(data) {
+    return data.map(entry => {
+        const amplitude = entry.tmax_degc - entry.tmin_degc;
+        const indicator = getTempIndicator(entry.tmoy_degc);
+        
+        return `
+            <tr data-date="${entry.date}" data-season="${getSeason(entry.date)}">
+                <td><strong>${formatDate(entry.date)}</strong></td>
+                <td style="color: #3b82f6; font-weight: 700;">${entry.tmin_degc.toFixed(1)}</td>
+                <td style="color: #ef4444; font-weight: 700;">${entry.tmax_degc.toFixed(1)}</td>
+                <td style="color: #f59e0b; font-weight: 700;">${entry.tmoy_degc.toFixed(1)}</td>
+                <td style="font-weight: 700;">${amplitude.toFixed(1)}</td>
+                <td>${indicator}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+/**
+ * Indicateur visuel de température
+ */
+function getTempIndicator(temp) {
+    if (temp < 5) return '<span style="font-size: 1.5em;">🥶</span> Très Froid';
+    if (temp < 10) return '<span style="font-size: 1.5em;">❄️</span> Froid';
+    if (temp < 15) return '<span style="font-size: 1.5em;">🌤️</span> Frais';
+    if (temp < 20) return '<span style="font-size: 1.5em;">☀️</span> Doux';
+    if (temp < 25) return '<span style="font-size: 1.5em;">🌡️</span> Chaud';
+    return '<span style="font-size: 1.5em;">🔥</span> Très Chaud';
+}
+
+/**
+ * Déterminer la saison
+ */
+function getSeason(dateString) {
+    const month = new Date(dateString).getMonth() + 1;
+    if (month >= 3 && month <= 5) return 'spring';
+    if (month >= 6 && month <= 8) return 'summer';
+    if (month >= 9 && month <= 11) return 'autumn';
+    return 'winter';
+}
+
+/**
+ * Format de date lisible
+ */
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
+}
+
+/**
+ * Génération des cartes par saison
+ */
+function generateSeasonCards(data) {
+    const seasons = {
+        spring: { name: 'Printemps', icon: '🌸', color: '#10b981', data: [] },
+        summer: { name: 'Été', icon: '☀️', color: '#f59e0b', data: [] },
+        autumn: { name: 'Automne', icon: '🍂', color: '#f97316', data: [] },
+        winter: { name: 'Hiver', icon: '❄️', color: '#3b82f6', data: [] }
+    };
+    
+    data.forEach(entry => {
+        const season = getSeason(entry.date);
+        seasons[season].data.push(entry);
+    });
+    
+    return Object.entries(seasons).map(([key, season]) => {
+        if (season.data.length === 0) return '';
+        
+        const avgTemp = season.data.reduce((sum, d) => sum + d.tmoy_degc, 0) / season.data.length;
+        const maxTemp = Math.max(...season.data.map(d => d.tmax_degc));
+        const minTemp = Math.min(...season.data.map(d => d.tmin_degc));
+        
+        return `
+            <div class="season-card" style="border-color: ${season.color};">
+                <div class="season-header" style="background: ${season.color};">
+                    <span class="season-icon">${season.icon}</span>
+                    <h4>${season.name}</h4>
+                </div>
+                <div class="season-body">
+                    <div class="season-stat">
+                        <span class="stat-label">Moyenne</span>
+                        <span class="stat-value">${avgTemp.toFixed(1)}°C</span>
+                    </div>
+                    <div class="season-stat">
+                        <span class="stat-label">Max</span>
+                        <span class="stat-value" style="color: #ef4444;">${maxTemp.toFixed(1)}°C</span>
+                    </div>
+                    <div class="season-stat">
+                        <span class="stat-label">Min</span>
+                        <span class="stat-value" style="color: #3b82f6;">${minTemp.toFixed(1)}°C</span>
+                    </div>
+                    <div class="season-stat">
+                        <span class="stat-label">Mesures</span>
+                        <span class="stat-value">${season.data.length}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+/**
+ * Initialisation des graphiques avec Chart.js
+ */
+function initTemperatureCharts(data, pageIndex) {
+    // Graphique linéaire
+    const lineCtx = document.getElementById(`tempLineChart-${pageIndex}`);
+    if (lineCtx) {
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: data.map(d => formatDate(d.date)),
+                datasets: [
+                    {
+                        label: 'T° Max',
+                        data: data.map(d => d.tmax_degc),
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'T° Moyenne',
+                        data: data.map(d => d.tmoy_degc),
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'T° Min',
+                        data: data.map(d => d.tmin_degc),
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 12,
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 13 }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Température (°C)',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Graphique en barres
+    const barCtx = document.getElementById(`tempBarChart-${pageIndex}`);
+    if (barCtx) {
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: data.map(d => formatDate(d.date)),
+                datasets: [
+                    {
+                        label: 'T° Min',
+                        data: data.map(d => d.tmin_degc),
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'T° Max',
+                        data: data.map(d => d.tmax_degc),
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                        borderColor: '#ef4444',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Température (°C)',
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+/**
+ * Initialisation de la heatmap
+ */
+function initHeatmap(data, pageIndex) {
+    const container = document.getElementById(`tempHeatmap-${pageIndex}`);
+    if (!container) return;
+    
+    // Organiser les données par mois
+    const monthlyData = {};
+    data.forEach(entry => {
+        const date = new Date(entry.date);
+        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        
+        if (!monthlyData[monthKey]) {
+            monthlyData[monthKey] = [];
+        }
+        monthlyData[monthKey].push(entry.tmoy_degc);
+    });
+    
+    // Calculer les moyennes mensuelles
+    const heatmapHTML = Object.entries(monthlyData)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([month, temps]) => {
+            const avg = temps.reduce((a, b) => a + b, 0) / temps.length;
+            const color = getTempColor(avg);
+            
+            return `
+                <div class="heatmap-cell" style="background: ${color};" title="${month}: ${avg.toFixed(1)}°C">
+                    <div class="heatmap-month">${month}</div>
+                    <div class="heatmap-value">${avg.toFixed(1)}°C</div>
+                </div>
+            `;
+        }).join('');
+    
+    container.innerHTML = heatmapHTML;
+}
+
+/**
+ * Couleur basée sur la température
+ */
+function getTempColor(temp) {
+    if (temp < 5) return 'linear-gradient(135deg, #3b82f6, #2563eb)';
+    if (temp < 10) return 'linear-gradient(135deg, #06b6d4, #0891b2)';
+    if (temp < 15) return 'linear-gradient(135deg, #10b981, #059669)';
+    if (temp < 20) return 'linear-gradient(135deg, #84cc16, #65a30d)';
+    if (temp < 25) return 'linear-gradient(135deg, #f59e0b, #d97706)';
+    return 'linear-gradient(135deg, #ef4444, #dc2626)';
+}
+
+/**
+ * Initialisation des filtres
+ */
+function initFilters(data, pageIndex) {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const tableBody = document.getElementById(`tempTableBody-${pageIndex}`);
+    
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Retirer l'état actif de tous les boutons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.dataset.filter;
+            const rows = tableBody.querySelectorAll('tr');
+            
+            rows.forEach(row => {
+                if (filter === 'all' || row.dataset.season === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+/**
+ * Initialisation de la recherche
+ */
+function initSearch(data, pageIndex) {
+    const searchInput = document.getElementById(`tempSearch-${pageIndex}`);
+    const tableBody = document.getElementById(`tempTableBody-${pageIndex}`);
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = tableBody.querySelectorAll('tr');
+            
+            rows.forEach(row => {
+                const date = row.dataset.date.toLowerCase();
+                if (date.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
+}
 
 // ════════════════════════════════════════════════════════════════════════════════
 // 🚀 INITIALISATION
@@ -1565,10 +2739,9 @@ document.addEventListener('keydown', (e) => {
 // Initialisation au chargement
 document.addEventListener('DOMContentLoaded', () => {
     showView('home');
-    createParticles('particles');
-    createParticles('particles2');
     
-    console.log('📖 LIVRE RÉALISTE chargé avec MODULE QUALITÉ DE L\'EAU !');
+    console.log('📖 LIVRE RÉALISTE chargé avec MODULE QUALITÉ DE L\'EAU et ZONES DE POLLUTION CESIUM!');
     console.log('📊', CITIES_DATA.length, 'chapitres disponibles');
     console.log('💧 Module qualité de l\'eau : INTÉGRÉ ✅');
+    console.log('🗺️ Module zones de pollution Cesium : INTÉGRÉ ✅');
 });
