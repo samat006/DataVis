@@ -1,0 +1,152 @@
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Corse DataVis - Livre 3D</title>
+        
+        <link href="https://cesium.com/downloads/cesiumjs/releases/1.111/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+        <script src="https://cesium.com/downloads/cesiumjs/releases/1.111/Build/Cesium/Cesium.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo" onclick="showView('home')">
+                    <div class="logo-icon"><i class="fas fa-mountain"></i></div>
+                    <span>CORSE DataVis</span>
+                </div>
+                <div class="nav-menu">
+                    <a onclick="showView('home')" class="nav-link active"><i class="fas fa-home"></i> Accueil</a>
+                    <a onclick="showView('book')" class="nav-link"><i class="fas fa-book"></i> Livre 3D</a>
+                    <a href="/api/cities" target="_blank" class="nav-link"><i class="fas fa-code"></i> API</a>
+                </div>
+            </div>
+        </nav>
+
+        <div id="view-home" class="view active">
+            <div class="particles" id="particles"></div>
+            
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">PORTRAIT DES TERRITOIRES DE CORSE</h1>
+                    <p class="hero-subtitle">Data Visualisation Interactive • Concours 2025</p>
+                    <div class="hero-badges">
+                        <span class="badge"><i class="fas fa-mountain"></i> {{ cities|length }} Territoires</span>
+                        <span class="badge"><i class="fas fa-users"></i> {{ "{:,}".format(stats.total_population) }} Habitants</span>
+                        <span class="badge"><i class="fas fa-chart-line"></i> INSEE 2025</span>
+                    </div>
+                    <button onclick="showView('book')" class="btn btn-primary">
+                        <i class="fas fa-book-open"></i> OUVRIR LE LIVRE 3D
+                    </button>
+                </div>
+            </section>
+            
+            <section class="stats-section">
+                <div class="container">
+                    <h2 class="section-title"><i class="fas fa-chart-pie"></i> Vue d'Ensemble</h2>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-value">{{ "{:,}".format(stats.total_population) }}</div>
+                            <div class="stat-label">Population Totale</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> +{{ stats.annual_growth }}%/an</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-wifi"></i></div>
+                            <div class="stat-value">{{ stats.avg_fibre_coverage }}%</div>
+                            <div class="stat-label">Couverture Fibre</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> Progression</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-signal"></i></div>
+                            <div class="stat-value">{{ stats['5g_antennas'] }}</div>
+                            <div class="stat-label">Antennes 5G</div>
+                            <div class="stat-trend up"><i class="fas fa-check"></i> Actif</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="stat-value">{{ "{:,}".format(stats.students) }}</div>
+                            <div class="stat-label">Élèves</div>
+                            <div class="stat-trend"><i class="fas fa-trophy"></i> Éducation</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cities-section">
+                <div class="container">
+                    <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Découvrir les Territoires</h2>
+                    <div class="cities-grid">
+                        {% for city in livre %}
+                        <div class="city-card" style="--city-color: #667eea" onclick="openCity('{{ city.code_insee}}')">
+                            <h3 class="city-card-title">{{ city.title}}</h3>
+
+                            <p class="city-card-subtitle">{{ city.description }}</p>
+                            <div class="city-card-stats">
+                                <div class="city-stat">
+                                    <i class="fas fa-users"></i>
+                                    <span>{{ "{:,}".format(city.population_ensemble | default(0)) }}</span>
+
+                                    <small>hab.</small>
+                                </div>
+                                <div class="city-stat">
+                                    <i class="fas fa-chart-area"></i>
+                                    <span>{{ city.density }}</span>
+                                    <small>hab/km²</small>
+                                </div>
+                                {% if city.fibre_coverage %}
+                                <div class="city-stat">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>{{ city.fibre_coverage }}%</span>
+                                    <small>Fibre</small>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if city.growth %}
+                            <div class="city-badge"><i class="fas fa-arrow-up"></i> +{{ city.growth }}%</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-book" class="view">
+            <div class="particles" id="particles2"></div>
+            <div class="book-wrapper">
+                <div class="book-container" id="bookContainer">
+                    <div class="book-spine"></div>
+                </div>
+            </div>
+            
+            <div class="page-nav">
+                <button class="nav-btn" onclick="previousPage()" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i> PRÉCÉDENT
+                </button>
+                <div class="page-indicator">
+                    Page <span id="currentPage">1</span> / <span id="totalPages">0</span>
+                </div>
+                <button class="nav-btn" onclick="nextPage()" id="nextBtn">
+                    SUIVANT <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const CITIES_DATA = {{ livre | tojson }};
+            const GLOBAL_STATS = {{ stats | tojson }};
+        </script>
+        
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+    </body>
+    </html> 
