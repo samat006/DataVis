@@ -7,6 +7,7 @@
 // 🔧 CONFIGURATION GLOBALE
 // ════════════════════════════════════════════════════════════════════════════════
 import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js";
+import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
 
 // Token Cesium
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYmI0M2NkMy0xMzFjLTRmYmMtOTg3ZC03MDgxOWFmMGJmNzgiLCJpZCI6MzYwNDM1LCJpYXQiOjE3NjMxMzUzNjl9.xoeEZG1S5zP6292-7MBC6t1aZ-LnuarRwpvehU7bX-M';
@@ -389,12 +390,12 @@ function createDashboard(city, index) {
     // Parcourir les données
     dataArray.forEach((dataObj, i) => {
         try {
-            // 1️⃣ PYRAMIDE DES ÂGES
+            //PYRAMIDE DES ÂGES
             if (dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']) {
                 content.pyramid = createAgePyramid(dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']);
             }
             
-            // 2️⃣ DÉMOGRAPHIE INSEE
+            // DÉMOGRAPHIE INSEE
             if (dataObj.insee_demographiques_depuis_1968) {
                 const result = processDemographicData(dataObj.insee_demographiques_depuis_1968);
                 content.tables = result.tables;
@@ -402,7 +403,7 @@ function createDashboard(city, index) {
                 content.deathRate += result.deathRate;
             }
             
-            // 3️⃣ EAU POTABLE PAR COMMUNE
+            //  EAU POTABLE PAR COMMUNE
             if (dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]) {
                 content.water = createWaterDashboard(dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]);
             }
@@ -410,15 +411,15 @@ function createDashboard(city, index) {
             if (dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]) {
                 content.waterNapp = createWaterNapeDashboard(dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]);
             }
-            // 4️⃣ POLLUTION - ZONES GÉOGRAPHIQUES
+            // POLLUTION - ZONES GÉOGRAPHIQUES
             if (dataObj["DonneEnv"]) {
                 content.pollution = createPollutionDashboard(dataObj["DonneEnv"], index);
             }
-             // 5️⃣ TEMPÉRATURES ET CLIMAT
+             // TEMPÉRATURES ET CLIMAT
             if (dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"]) {   
                 content.TemperatureDashboard = createTemperatureDashboard(dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"], index);}
                 
-            // 6️⃣ TRI SÉLECTIF DES DÉCHETS
+            //  TRI SÉLECTIF DES DÉCHETS
             if (dataObj["tri-selectif-en-2012"]) {   
                 content.dechettri = createTriSelectifDashboard(dataObj["tri-selectif-en-2012"],index);}
             
@@ -426,7 +427,11 @@ function createDashboard(city, index) {
             if (dataObj["decharges-brutes-en-corse"]) {   
                 content.decharge = createDechargeDashboard(dataObj["decharges-brutes-en-corse"],index);}
                 
-            
+            //=========== chapitre 4  bien etre pop ===========
+            // SANTÉ 
+            if (dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"]) {
+                content.sante = createSanteDashboard(dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"],dataObj["export_partenaires_07_10_2024"],dataObj["localisation-des-services-daccueil-des-urgences-en-corse"],dataObj["localisation-reanimation-hopital-corse"], index);}
+
        
        
         }catch (error) {
@@ -454,6 +459,9 @@ function createDashboard(city, index) {
         ${content.decharge}
         ${circleChart}
         ${content.tables}
+        ${content.sante}
+         
+        
     `;
 }
 
@@ -672,7 +680,11 @@ function loadCesiumData(viewer, city, index) {
             displayWaterSourcesCesium(viewer, dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]);
             dataLoaded = true;
         }
-   
+        // ✅ SANTÉ - HÔPITAUX ET URGENCES
+        if (dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"]) {
+            initSanteCesiumMap( dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"],dataObj["export_partenaires_07_10_2024"],dataObj["localisation-des-services-daccueil-des-urgences-en-corse"],dataObj["localisation-reanimation-hopital-corse"], viewer, index);
+            dataLoaded = true;
+        }
         
     });
 }
@@ -1171,7 +1183,7 @@ function createWaterDashboard(waterData) {
 /**
  * Filtre les communes selon la recherche
  */
-function filterWaterCommunes() {
+window.filterWaterCommunes=function filterWaterCommunes() {
     const search = document.getElementById("waterSearch");
     if (!search) return;
     
@@ -2824,7 +2836,7 @@ function initFilters(data, pageIndex) {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const tableBody = document.getElementById(`tempTableBody-${pageIndex}`);
     
-    filterButtons.forEach(btn => {
+    window.filterButtons=filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             // Retirer l'état actif de tous les boutons
             filterButtons.forEach(b => b.classList.remove('active'));
