@@ -1864,7 +1864,7 @@ body, html {
     text-align: center;
     margin-bottom: 40px;
     padding: 30px;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #5c74fc, #310f90);
     border-radius: 20px;
     color: white;
 }
@@ -1878,13 +1878,59 @@ body, html {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    color: white !important;
 }
 
 .dashboard-header p {
     margin: 0;
     font-size: 1.1em;
     opacity: 0.95;
+    color: white !important;
 }
+
+.water-legend {
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.water-legend h4 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dashboard-header-r {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #a9a8a8, #836400);
+    border-radius: 20px;
+    color: white;
+}
+
 
 /* CARTES DE POLLUANTS */
 .pollution-cards {
@@ -2225,7 +2271,7 @@ body, html {
 }
 
 :root {
-    --color-primary: #8b5cf6;
+    --color-primary: #568e44;
     --color-success: #10b981;
     --color-warning: #f59e0b;
     --color-danger: #ef4444;
@@ -2394,7 +2440,7 @@ body, html {
 
 .toggle-communes-btn {
     padding: 14px 24px;
-    background: linear-gradient(135deg, var(--color-primary), var(--secondary));
+    background: linear-gradient(135deg, #848baf, #1703cb);
     color: white;
     border: none;
     border-radius: var(--radius-md);
@@ -2652,14 +2698,14 @@ body, html {
     display: flex;
     gap: 10px;
     padding: 12px;
-    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    background: linear-gradient(135deg, #f9fafb, #214488);
     border-radius: 10px;
     border: 2px solid #d1d5db;
     transition: all 0.3s ease;
 }
 
 .cesium-info-item:hover {
-    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    background: linear-gradient(135deg, #f3f4f6, #0c41ad);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: #8b5cf6;
@@ -2683,7 +2729,7 @@ body, html {
 .cesium-info-label {
     font-size: 0.75em;
     font-weight: 700;
-    color: #4b5563;
+    color: #000000 !important;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 4px;
@@ -2692,7 +2738,7 @@ body, html {
 .cesium-info-value {
     font-size: 0.95em;
     font-weight: 700;
-    color: #111827;
+    color: #000000 !important;
     word-wrap: break-word;
 }
 
@@ -2700,7 +2746,7 @@ body, html {
     font-size: 0.85em;
     font-weight: 600;
     line-height: 1.4;
-    color: #1f2937;
+    color: #000000;
 }
 
 /* DATES */
@@ -2842,7 +2888,7 @@ body, html {
 
 /* STYLE DE L'INFOBOX CESIUM */
 .cesium-infoBox {
-    background: rgba(1, 1, 1, 0.98) !important;
+    background: rgba(252, 249, 249, 0.98) !important;
     backdrop-filter: blur(10px);
     border-radius: 12px !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
@@ -2964,7 +3010,7 @@ body, html {
 
 .stat-label {
     font-size: 0.85em;
-    color: #6b7280;
+    color: #ffffff;
     margin-top: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;

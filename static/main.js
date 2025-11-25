@@ -379,6 +379,7 @@ function createDashboard(city, index) {
         dechettri: '',
         decharge: '',
         water: '',
+        waterNapp: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -405,7 +406,10 @@ function createDashboard(city, index) {
             if (dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]) {
                 content.water = createWaterDashboard(dataObj["prelevements-resultats-d-analyses-et-conclusions-sanitaires-issus-du-controle-sa"]);
             }
-            
+            //EAU NAPPE
+            if (dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]) {
+                content.waterNapp = createWaterNapeDashboard(dataObj["eau-qualite-des-nappes-d-eau-souterraine-stations"]);
+            }
             // 4️⃣ POLLUTION - ZONES GÉOGRAPHIQUES
             if (dataObj["DonneEnv"]) {
                 content.pollution = createPollutionDashboard(dataObj["DonneEnv"], index);
@@ -442,6 +446,7 @@ function createDashboard(city, index) {
             <p class="city-subtitle">${city.description}</p>
         </div>
         ${content.water}
+        ${content.waterNapp}
         ${content.pollution}
         ${content.pyramid}
         ${content.TemperatureDashboard }   
@@ -654,7 +659,7 @@ function loadCesiumData(viewer, city, index) {
     let dataLoaded = false;
     
     const dataArray = normalizeDataToArray(city.data);
-    
+    setDefaultView(viewer, city);
     dataArray.forEach(dataObj => {
         // Communes
         if (dataObj.population_corse && dataObj.population_corse.length > 0) {
@@ -677,7 +682,7 @@ function loadCesiumData(viewer, city, index) {
  * @param {Object} viewer - Viewer Cesium
  * @param {Object} city - Données de la ville
  */
-function setDefaultView(viewer, city) {
+window.setDefaultView = function setDefaultView(viewer, city) {
     viewer.camera.flyTo({
         destination: Cesium.Cartesian3.fromDegrees(
             DEFAULT_COORDS.lon,
@@ -1056,7 +1061,7 @@ function createWaterDashboard(waterData) {
                     </div>
                 </div>
                 <div class="stat-mini-card">
-                    <div class="stat-mini-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                    <div class="stat-mini-icon" style="background: linear-gradient(135deg, #6b86ffff, #4c5ea7ff);">
                         <i class="fas fa-vial"></i>
                     </div>
                     <div class="stat-mini-content">
@@ -1195,8 +1200,139 @@ window.toggleWaterCommunes= function toggleWaterCommunes() {
         : "🙈 Masquer les communes";
 }
 
+window.toggleTemp=function toggleTemp(pageIndex) {
+    const table = document.getElementById(`tempTable-${pageIndex}`);
+    const btn = document.getElementById(`toggleTempBtn-${pageIndex}`);
+
+    if (table.style.display === "none") {
+        table.style.display = "table";
+        btn.innerHTML = "👁️ Masquer les températures";
+    } else {
+        table.style.display = "none";
+        btn.innerHTML = "👁️ Afficher les températures";
+    }
+}
+window.toggleTempM=function toggleTemp(pageIndex) {
+    const table = document.getElementById(`tempHeatmap-${pageIndex}`);
+    const btn = document.getElementById(`toggleTempBtnM`);
+
+    if (table.style.display === "none") {
+        table.style.display = "table";
+        btn.innerHTML = "👁️ Masquer ";
+    } else {
+        table.style.display = "none";
+        btn.innerHTML = "👁️ Afficher ";
+    }
+}
+
+
+
+
 // ════════════════════════════════════════════════════════════════════════════════
-// 🗺️ FONCTION CESIUM AMÉLIORÉE - SOURCES D'EAU
+// 🗺️ FONCTION Les Source deau de Nape
+// ════════════════════════════════════════════════════════════════════════════════
+
+function createWaterNapeDashboard(waterData) {
+    if (!Array.isArray(waterData) || waterData.length === 0) {
+        return '';
+    }
+
+    // 📊 Stats
+    const stats = {
+        total: waterData.length,
+        active: 0,
+        inactive: 0,
+        byType: {}
+    };
+
+    // ✅ Calcul des stats
+    waterData.forEach(source => {
+        const isActive = !source.date_fin_mesure || 
+                        new Date(source.date_fin_mesure) > new Date();
+
+        if (isActive) stats.active++;
+        else stats.inactive++;
+
+        const type = source.nom_nature_pe || 'Inconnu';
+        stats.byType[type] = (stats.byType[type] || 0) + 1;
+    });
+
+    let html = `
+        <div class="water-section">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-tint"></i> Qualité de l'Eau Nappes</h2>
+                <p>Surveillance des captages et forages</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="water-stats-mini">
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="stat-mini-content">
+                        <div class="stat-mini-value">${stats.total}</div>
+                        <div class="stat-mini-label">Captages</div>
+                    </div>
+                </div>
+
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-mini-content">
+                        <div class="stat-mini-value">${stats.active}</div>
+                        <div class="stat-mini-label">Actifs</div>
+                    </div>
+                </div>
+
+                <div class="stat-mini-card">
+                    <div class="stat-mini-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-mini-content">
+                        <div class="stat-mini-value">${stats.inactive}</div>
+                        <div class="stat-mini-label">Inactifs</div>
+                    </div>
+                </div>
+                 <div class="decharge-legend">
+                  <h4><i class="fas fa-info-circle"></i> Regardez sur la carte a droit cliquez sur les points pour plus de details ==>  </h4>
+                    </div>
+
+            </div>
+    `;
+html += `
+    <!-- Légende des types de points d'eau -->
+    
+        <div class="decharge-legend">
+            <h4><i class="fas fa-info-circle"></i> Légende </h4>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="legend-color" style="background:#06b6d4"></span> 💧 Source
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background:#d4bc07ff"></span> 🔧 Forage / Puits
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background:#1d0679ff"></span> 🚰 Captage
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background:#f59e0b"></span> 📊 Piézomètre
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background:#6b7280"></span> 🗺️ Autre
+            </div>
+        </div>
+    </div>
+`;
+
+    return html;
+}
+
+
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 🗺️ FONCTION CESIUM  - SOURCES D'EAU
 // ════════════════════════════════════════════════════════════════════════════════
 
 /**
@@ -1217,7 +1353,7 @@ function displayWaterSourcesCesium(viewer, bssData, options = {}) {
         animateCamera: true,
         showLabels: true,
         clampToGround: true,
-        pixelSize: 14,
+        pixelSize: 44,
         outlineWidth: 3,
         ...options
     };
@@ -1285,7 +1421,7 @@ function displayWaterSourcesCesium(viewer, bssData, options = {}) {
             // Label (si activé)
             label: config.showLabels ? {
                 text: source.nom_commune || "Source",
-                font: '700 14px Space Grotesk, sans-serif',
+                font: '700 30px Space Grotesk, sans-serif',
                 fillColor: Cesium.Color.WHITE,
                 style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                 outlineColor: Cesium.Color.BLACK,
@@ -1356,11 +1492,11 @@ function getSourceColor(source, isActive) {
         icon = '💧';
         label = 'Source';
     } else if (type.includes('forage') || type.includes('puits')) {
-        baseColor = Cesium.Color.fromCssColorString('#8b5cf6'); // Violet
+        baseColor = Cesium.Color.fromCssColorString('#d4bc07ff'); // Violet
         icon = '🔧';
         label = 'Forage';
     } else if (type.includes('captage')) {
-        baseColor = Cesium.Color.fromCssColorString('#10b981'); // Vert
+        baseColor = Cesium.Color.fromCssColorString('#1d0679ff'); // Vert
         icon = '🚰';
         label = 'Captage';
     } else if (type.includes('piézomètre')) {
@@ -1409,9 +1545,9 @@ function createEnhancedDescription(source, isActive, colorData) {
     }
 
     return `
-        <div class="cesium-water-popup">
-            <div class="cesium-popup-header" style="background: linear-gradient(135deg, ${color}, ${color}dd);">
-                <div class="cesium-popup-icon">${colorData.icon}</div>
+        <div class="zone-card-body">
+            <div class="zone-card-header" style="background: linear-gradient(135deg, ${color}, ${color}dd);">
+                <div class="zone-card-icon">${colorData.icon}</div>
                 <div class="cesium-popup-title">
                     <h3>${source.nom_commune || 'Source inconnue'}</h3>
                     <span class="cesium-popup-type">${colorData.label}</span>
@@ -1419,45 +1555,45 @@ function createEnhancedDescription(source, isActive, colorData) {
                 ${statusBadge}
             </div>
             
-            <div class="cesium-popup-body">
-                <div class="cesium-info-grid">
-                    <div class="cesium-info-item">
-                        <div class="cesium-info-icon">🔖</div>
-                        <div class="cesium-info-content">
-                            <div class="cesium-info-label">Identifiant BSS</div>
-                            <div class="cesium-info-value">${source.bss_id || source.code_bss || 'N/A'}</div>
+            <div class="zone-card-body">
+                <div class="zone-info-grid">
+                    <div class="zone-info-item">
+                        <div class="zone-info-icon">🔖</div>
+                        <div class="zone-info-content">
+                            <div class="zone-info-label">Identifiant BSS</div>
+                            <div class="zone-info-value">${source.bss_id || source.code_bss || 'N/A'}</div>
                         </div>
                     </div>
                     
-                    <div class="cesium-info-item">
-                        <div class="cesium-info-icon">📍</div>
-                        <div class="cesium-info-content">
-                            <div class="cesium-info-label">Type d'ouvrage</div>
-                            <div class="cesium-info-value">${source.nom_nature_pe || 'Non spécifié'}</div>
+                    <div class="zone-info-item">
+                        <div class="zone-info-icon">📍</div>
+                        <div class="zone-info-content">
+                            <div class="zone-info-label">Type d'ouvrage</div>
+                            <div class="zone-info-value">${source.nom_nature_pe || 'Non spécifié'}</div>
                         </div>
                     </div>
                     
-                    <div class="cesium-info-item">
-                        <div class="cesium-info-icon">📐</div>
-                        <div class="cesium-info-content">
-                            <div class="cesium-info-label">Altitude</div>
-                            <div class="cesium-info-value">${source.altitude ? source.altitude.toFixed(1) + ' m' : 'N/A'}</div>
+                    <div class="zone-info-item">
+                        <div class="zone-info-icon">📐</div>
+                        <div class="zone-info-content">
+                            <div class="zone-info-label">Altitude</div>
+                            <div class="zone-info-value">${source.altitude ? source.altitude.toFixed(1) + ' m' : 'N/A'}</div>
                         </div>
                     </div>
                     
-                    <div class="cesium-info-item">
-                        <div class="cesium-info-icon">📅</div>
-                        <div class="cesium-info-content">
-                            <div class="cesium-info-label">Période de mesure</div>
-                            <div class="cesium-info-value">${duree}</div>
+                    <div class="zone-info-item">
+                        <div class="zone-info-icon">📅</div>
+                        <div class="zone-info-content">
+                            <div class="zone-info-label">Période de mesure</div>
+                            <div class="zone-info-value">${duree}</div>
                         </div>
                     </div>
                     
-                    <div class="cesium-info-item full">
-                        <div class="cesium-info-icon">📊</div>
-                        <div class="cesium-info-content">
-                            <div class="cesium-info-label">Dates de mesure</div>
-                            <div class="cesium-info-dates">
+                    <div class="zone-info-item full">
+                        <div class="zone-info-icon">📊</div>
+                        <div class="zone-info-content">
+                            <div class="zone-info-label">Dates de mesure</div>
+                            <div class="zone-info-dates">
                                 <span class="cesium-date-badge">
                                     <strong>Début:</strong> ${formatDate(source.date_debut_mesure)}
                                 </span>
@@ -1470,11 +1606,11 @@ function createEnhancedDescription(source, isActive, colorData) {
                     </div>
                     
                     ${source.nom_departement ? `
-                        <div class="cesium-info-item full">
-                            <div class="cesium-info-icon">🏛️</div>
-                            <div class="cesium-info-content">
-                                <div class="cesium-info-label">Localisation administrative</div>
-                                <div class="cesium-info-value">
+                        <div class="zone-info-item full">
+                            <div class="zone-info-icon">🏛️</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Localisation administrative</div>
+                                <div class="zone-info-value">
                                     ${source.nom_departement}${source.nom_region ? ` - ${source.nom_region}` : ''}
                                 </div>
                             </div>
@@ -1482,11 +1618,11 @@ function createEnhancedDescription(source, isActive, colorData) {
                     ` : ''}
                     
                     ${source.noms_entite_hg_bdlisa ? `
-                        <div class="cesium-info-item full">
-                            <div class="cesium-info-icon">🌊</div>
-                            <div class="cesium-info-content">
-                                <div class="cesium-info-label">Entité hydrogéologique</div>
-                                <div class="cesium-info-value small">${source.noms_entite_hg_bdlisa}</div>
+                        <div class="zone-info-item full">
+                            <div class="zone-info-icon">🌊</div>
+                            <div class="zone-info-content">
+                                <div class="zone-info-label">Entité hydrogéologique</div>
+                                <div class="zone-info-value small">${source.noms_entite_hg_bdlisa}</div>
                             </div>
                         </div>
                     ` : ''}
@@ -1629,7 +1765,7 @@ function createPollutionDashboard(pollutionData, pageIndex) {
 
     let html = `
         <div class="pollution-section">
-            <div class="dashboard-header">
+            <div class="dashboard-header-r">
                 <h2><i class="fas fa-wind"></i> Qualité de l'Air - Zones de Surveillance</h2>
                 <p>Zones Administratives de Surveillance (ZAS) - Suivi des polluants atmosphériques</p>
             </div>
@@ -2151,13 +2287,14 @@ function createPollutionZoneDescription(zone) {
             </div>
             
             <div style="padding: 0 5px;">
-                <div style="background: ${getPollutantColor(zone.pollutant)}22; 
+                <div style="background-color: #ffffffff; 
                             padding: 12px; border-radius: 8px; margin-bottom: 12px; 
+                            color: #ffffffff !important;
                             border-left: 4px solid ${getPollutantColor(zone.pollutant)};">
                     <div style="font-size: 1.1em; font-weight: 700; color: #1f2937; margin-bottom: 4px;">
                         ${pollutantIcon} Polluant: ${zone.pollutant}
                     </div>
-                    <div style="font-size: 0.9em; color: #6b7280;">
+                    <div style="font-size: 0.9em; color: #000000ff;">
                         ⚖️ Valeur réglementaire: <strong>${zone.limit || 'N/A'}</strong>
                     </div>
                 </div>
@@ -2308,6 +2445,12 @@ function createTemperatureDashboard(temperatureData, pageIndex) {
             <h3 class="section-title">
                 <i class="fas fa-th"></i> Carte Thermique Mensuelle
             </h3>
+             <button 
+                    id="toggleTempBtnM" 
+                    class="toggle-communes-btn"
+                    onclick="toggleTempM(${pageIndex})">
+                    👁️ Masquer
+                </button>
             <div id="tempHeatmap-${pageIndex}" class="temp-heatmap"></div>
         </div>
 
@@ -2318,11 +2461,12 @@ function createTemperatureDashboard(temperatureData, pageIndex) {
             </h3>
             <div class="temp-search-bar">
                 <input type="text" id="tempSearch-${pageIndex}" placeholder="🔍 Rechercher par date AAAA-MM-JJ..." class="temp-search-input">
-                 <button id="toggleCommunesBtn" 
-                         class="toggle-communes-btn" 
-                            onclick="toggleWaterCommunes()">
-                         👁️ Masquer les communes
-                 </button>
+            <button 
+                    id="toggleTempBtn-${pageIndex}" 
+                    class="toggle-communes-btn"
+                    onclick="toggleTemp(${pageIndex})">
+                    👁️ Masquer les températures
+                </button>
                 </div>
             <div class="table-scroll">
                 <table class="temp-table" id="tempTable-${pageIndex}">
