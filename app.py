@@ -102,6 +102,8 @@ update_donnees_au_chapitre("DonneEnv",livre, chapitre_id=3, dossier="environneme
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/eau")
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/temp")
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/dechet")
+ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/sante")
+
 
 
 
