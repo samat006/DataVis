@@ -1,0 +1,977 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   🚌 DASHBOARD TRANSPORT & MOBILITÉ - STYLES COMPLETS
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+.transport-dashboard {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* EN-TÊTE */
+.transport-dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+}
+
+.transport-dashboard-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.transport-dashboard-header p {
+    margin: 0;
+    font-size: 1.1em;
+    opacity: 0.95;
+}
+
+/* STATS GLOBALES */
+.transport-stats-global {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.transport-stat-card {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transport-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.transport-stat-card .stat-icon {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.transport-stat-card .stat-content {
+    flex: 1;
+}
+
+.transport-stat-card .stat-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.transport-stat-card .stat-label {
+    font-size: 1em;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.transport-stat-card .stat-detail {
+    font-size: 0.9em;
+    opacity: 0.85;
+    margin-top: 6px;
+}
+
+/* SECTIONS */
+.transport-section {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+/* CARTE CESIUM */
+.transport-map-container {
+    height: 600px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+}
+
+.cesium-transport-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+.map-legend-transport {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(245, 158, 11, 0.2);
+    padding: 20px;
+    border-radius: 16px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+}
+
+.map-legend-transport h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.map-legend-transport h4 i {
+    color: #f59e0b;
+}
+
+.map-legend-transport .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.map-legend-transport .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #374151;
+    font-weight: 600;
+}
+
+.legend-line {
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* STATS LIGNES */
+.lignes-stats,
+.parking-stats,
+.velo-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.ligne-stat-box,
+.parking-stat-box,
+.velo-stat-box {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.ligne-stat-box:hover,
+.parking-stat-box:hover,
+.velo-stat-box:hover {
+    border-color: #f59e0b;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
+}
+
+.ligne-icon,
+.parking-icon,
+.velo-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.ligne-value,
+.parking-value,
+.velo-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ligne-label,
+.parking-label,
+.velo-label {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* GRID LIGNES */
+.lignes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.ligne-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.ligne-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ligne-card-header {
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ligne-numero {
+    font-size: 1.5em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ligne-type {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.ligne-card-body {
+    padding: 20px;
+}
+
+.ligne-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ligne-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+.ligne-info i {
+    color: #f59e0b;
+}
+
+/* TRAIN */
+.train-highlight {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 16px;
+    padding: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.train-logo {
+    font-size: 5em;
+    line-height: 1;
+}
+
+.train-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.train-info p {
+    margin: 0;
+    opacity: 0.95;
+}
+
+.train-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.train-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.train-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+}
+
+.train-card-header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.train-numero {
+    font-size: 1.5em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.train-badge {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.train-card-body {
+    padding: 20px;
+}
+
+.train-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.train-route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+.train-route i {
+    color: #3b82f6;
+}
+
+/* PARKINGS */
+.parking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.parking-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.parking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+    border-color: #10b981;
+}
+
+.parking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.parking-icon-large {
+    font-size: 2.5em;
+    line-height: 1;
+}
+
+.parking-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.parking-badge.public {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.parking-badge.prive {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.parking-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.parking-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.9em;
+    color: #374151;
+}
+
+.parking-info i {
+    color: #10b981;
+    width: 20px;
+}
+
+.parking-tags {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.parking-tag {
+    padding: 6px 12px;
+    background: #f3f4f6;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+/* VÉLOS */
+.velo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.velo-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.velo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+    border-color: #8b5cf6;
+}
+
+.velo-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.velo-icon-large {
+    font-size: 2.5em;
+    line-height: 1;
+}
+
+.velo-type {
+    padding: 6px 12px;
+    background: #ede9fe;
+    color: #6b21a8;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.velo-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.velo-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.9em;
+    color: #374151;
+}
+
+.velo-info i {
+    color: #8b5cf6;
+    width: 20px;
+}
+
+/* PPI INVESTISSEMENTS */
+.ppi-highlight {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-radius: 16px;
+    padding: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.ppi-icon {
+    font-size: 5em;
+    line-height: 1;
+}
+
+.ppi-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ppi-total {
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1;
+    margin: 10px 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ppi-content p {
+    margin: 0;
+    opacity: 0.95;
+}
+
+.ppi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.ppi-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.ppi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+    border-color: #f59e0b;
+}
+
+.ppi-card-header {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.ppi-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.ppi-badge.encours {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.ppi-badge.prete {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.ppi-card-body {
+    padding: 20px;
+}
+
+.ppi-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.3;
+}
+
+.ppi-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.9em;
+    color: #374151;
+}
+
+.ppi-info i {
+    color: #f59e0b;
+    width: 20px;
+}
+
+.ppi-montant {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.ppi-montant-value {
+    font-size: 2em;
+    font-weight: 800;
+    color: #92400e;
+    display: block;
+    line-height: 1;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.ppi-montant-label {
+    font-size: 0.85em;
+    color: #78350f;
+    font-weight: 600;
+    margin-top: 8px;
+    display: block;
+}
+
+/* BORNES ÉLECTRIQUES */
+.bornes-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.borne-stat-box {
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+}
+
+.borne-stat-box.favorable {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-color: #10b981;
+}
+
+.borne-stat-box.defavorable {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+}
+
+.borne-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.borne-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.borne-stat-box.favorable .borne-value {
+    color: #065f46;
+}
+
+.borne-stat-box.defavorable .borne-value {
+    color: #991b1b;
+}
+
+.borne-label {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.borne-stat-box.favorable .borne-label {
+    color: #065f46;
+}
+
+.borne-stat-box.defavorable .borne-label {
+    color: #991b1b;
+}
+
+.bornes-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.borne-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.borne-item:hover {
+    transform: translateX(4px);
+}
+
+.borne-item.favorable {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-color: #10b981;
+}
+
+.borne-item.defavorable {
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border-color: #ef4444;
+}
+
+.borne-time {
+    min-width: 60px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.borne-item.favorable .borne-time {
+    color: #065f46;
+}
+
+.borne-item.defavorable .borne-time {
+    color: #991b1b;
+}
+
+.borne-status {
+    flex: 1;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+.borne-item.favorable .borne-status {
+    color: #047857;
+}
+
+.borne-item.defavorable .borne-status {
+    color: #dc2626;
+}
+
+.borne-power {
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.borne-item.favorable .borne-power {
+    color: #065f46;
+}
+
+.borne-item.defavorable .borne-power {
+    color: #991b1b;
+}
+
+/* GRAPHIQUES */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.chart-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    border: 2px solid #e5e7eb;
+}
+
+.chart-wrapper h4 {
+    margin: 0 0 20px 0;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.chart-wrapper canvas {
+    max-height: 300px;
+}
+
+/* LOAD MORE */
+.load-more-container {
+    text-align: center;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.load-more-container p {
+    margin: 0;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .lignes-grid,
+    .train-grid,
+    .parking-grid,
+    .velo-grid,
+    .ppi-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .transport-dashboard-header h2 {
+        font-size: 1.6em;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .transport-stats-global,
+    .lignes-stats,
+    .parking-stats,
+    .velo-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .lignes-grid,
+    .train-grid,
+    .parking-grid,
+    .velo-grid,
+    .ppi-grid,
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .map-controls {
+        justify-content: stretch;
+    }
+    
+    .map-control-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .transport-map-container {
+        height: 400px;
+    }
+    
+    .map-legend-transport {
+        position: static;
+        margin-bottom: 15px;
+        max-width: 100%;
+    }
+    
+    .train-highlight,
+    .ppi-highlight {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .bornes-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .transport-stat-card .stat-value,
+    .ligne-value,
+    .parking-value,
+    .velo-value,
+    .borne-value {
+        font-size: 2em;
+    }
+    
+    .ppi-total {
+        font-size: 2.5em;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.ligne-card,
+.train-card,
+.parking-card,
+.velo-card,
+.ppi-card,
+.borne-item {
+    animation: slideIn 0.5s ease;
+}
+
+/* SCROLLBAR */
+.transport-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.transport-section::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.transport-section::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 4px;
+}
+
+.transport-section::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* FOCUS ACCESSIBILITÉ */
+.map-control-btn:focus,
+.toggle-section-btn:focus {
+    outline: 3px solid rgba(245, 158, 11, 0.5);
+    outline-offset: 2px;
+}

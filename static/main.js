@@ -11,7 +11,8 @@ import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
 import { createLogementDashboard } from "./logement.js";
 import { createTravailDashboard } from "./emploi.js";
 import { createEducationDashboard ,initEducationCesiumMap} from "./education.js";
-
+import {  createTransportDashboard } from "./transport.js";
+import { createSeniorsDashboard} from "./senior.js";
 
 
 // Token Cesium
@@ -398,6 +399,7 @@ function createDashboard(city, index) {
         logement: '',
         emploi: '',
         education: '',
+        transport: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -449,7 +451,7 @@ function createDashboard(city, index) {
                  dataObj["tri-selectif-en-2012"]=[]
                  dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"]=[]
                
-                
+             
             //=========== chapitre 4  bien etre pop ===========
             // SANTÉ 
             if (dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"]) {
@@ -465,8 +467,17 @@ function createDashboard(city, index) {
             // EDUCATION
             if (dataObj["annuaire-de-leducation"]) {
                 content.education = createEducationDashboard(dataObj["annuaire-de-leducation"],dataObj["les-beneficiaires-de-la-prime-d-excellence-scientifique"],dataObj["les-enseignants-titulaires-de-l-enseignement-superieur-public"], index);}
+            // TRANSPORT
+            if (dataObj["gtfs-transport-horaires-cars-de-haute-corse"] ) {
+                content.transport = createTransportDashboard(dataObj["gtfs-transport-horaires-cars-de-haute-corse"],dataObj["horaires-cars2a-gtfs"],dataObj["horaires-cfc-gtfs"],dataObj["parking"],dataObj["ppi-fer-2026-2030"],dataObj["signal-reseau-corse-recharge-vehicule-electrique"],dataObj["stationnement_velo"], index);}
+            
+            //============chapitre 5 seniors=============
 
-        }catch (error) {
+            // SENIORS
+            if (dataObj["60-et-plus_indicateurs-au-niveau-de-la-commune"] ) {
+                content.seniors = createSeniorsDashboard( dataObj["60-et-plus_indicateurs-au-niveau-de-la-commune"], dataObj["75-ans-et-plus-indicateurs-de-vieillissement-par-departement"], index);}
+            
+            }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
             }
     });
@@ -495,9 +506,8 @@ function createDashboard(city, index) {
         ${content.logement}
         ${content.emploi}
         ${content.education}
-
-         
-        
+        ${content.transport}
+        ${content.seniors}
     `;
 }
 
@@ -726,6 +736,8 @@ function loadCesiumData(viewer, city, index) {
         if (dataObj["annuaire-de-leducation"]) {
             initEducationCesiumMap(viewer, index);
         }
+     
+        
         
     });
 }
