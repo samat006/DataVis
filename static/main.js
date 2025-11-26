@@ -10,6 +10,7 @@ import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js
 import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
 import { createLogementDashboard } from "./logement.js";
 import { createTravailDashboard } from "./emploi.js";
+import { createEducationDashboard ,initEducationCesiumMap} from "./education.js";
 
 
 
@@ -277,37 +278,45 @@ window.nextPage = function nextPage() {
     if (STATE.isAnimating || STATE.currentPage >= CITIES_DATA.length - 1) return;
     
     STATE.isAnimating = true;
+
     const currentSpread = document.querySelector(`.page-spread[data-page="${STATE.currentPage}"]`);
     const nextSpread = document.querySelector(`.page-spread[data-page="${STATE.currentPage + 1}"]`);
-    
+
     if (!currentSpread || !nextSpread) {
         STATE.isAnimating = false;
         return;
     }
-    
+
+    // ✅ VIDER les données de la page actuelle AVANT animation
+
+
     // Animation de tournage
     currentSpread.classList.add('turning');
     nextSpread.classList.remove('hidden');
     nextSpread.classList.add('current');
     nextSpread.style.zIndex = '5';
-    
+
     setTimeout(() => {
         currentSpread.classList.remove('current', 'turning');
         currentSpread.classList.add('turned');
         currentSpread.style.zIndex = '1';
         nextSpread.style.zIndex = '10';
-        
+
         STATE.currentPage++;
         updatePageIndicator();
-        
+
         // Initialiser Cesium si nécessaire
         if (!STATE.viewers[STATE.currentPage]) {
             initCesium(STATE.currentPage);
         }
-        
+
         STATE.isAnimating = false;
     }, 2000);
 }
+
+
+
+
 
 /**
  * Revient à la page précédente
@@ -388,6 +397,7 @@ function createDashboard(city, index) {
         sante: '',
         logement: '',
         emploi: '',
+        education: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -433,6 +443,12 @@ function createDashboard(city, index) {
             //decharge bruts 
             if (dataObj["decharges-brutes-en-corse"]) {   
                 content.decharge = createDechargeDashboard(dataObj["decharges-brutes-en-corse"],index);}
+               
+                //vider les données des chapitres passer
+                 dataObj["decharges-brutes-en-corse"]=[]
+                 dataObj["tri-selectif-en-2012"]=[]
+                 dataObj["temperature-quotidienne-regionale-depuis-janvier-2016"]=[]
+               
                 
             //=========== chapitre 4  bien etre pop ===========
             // SANTÉ 
@@ -442,10 +458,13 @@ function createDashboard(city, index) {
             // LOGEMENT 
             if (dataObj["constructionrehabilitation_logementsocial_surface_prix"]) {
                 content.logement = createLogementDashboard(dataObj["constructionrehabilitation_logementsocial_surface_prix"],dataObj["logements-et-logements-sociaux-dans-les-regions"],dataObj["insee-log-t8m-confort-des-residences-principales"], index);}
-       
+             
             // EMPLOI
             if (dataObj["insee-emp-g2-taux-de-chomage-au-sens-du-recensement-des-15-64-ans-par-diplome-e0"]) {
                 content.emploi = createTravailDashboard(dataObj["insee-emp-g2-taux-de-chomage-au-sens-du-recensement-des-15-64-ans-par-diplome-e0"],dataObj["insee-rev-g1-taux-de-pauvrete-par-tranche-d-age-du-referent-fiscal-en-2020"],dataObj["insee-rev-g2-taux-de-pauvrete-par-statut-d-occupation-du-logement-du-referent-fi"],dataObj["insee-sal-g1-salaire-net-horaire-moyen-en-euros-selon-la-categorie-socioprofess0"], index);}
+            // EDUCATION
+            if (dataObj["annuaire-de-leducation"]) {
+                content.education = createEducationDashboard(dataObj["annuaire-de-leducation"],dataObj["les-beneficiaires-de-la-prime-d-excellence-scientifique"],dataObj["les-enseignants-titulaires-de-l-enseignement-superieur-public"], index);}
 
         }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
@@ -475,6 +494,7 @@ function createDashboard(city, index) {
         ${content.sante}
         ${content.logement}
         ${content.emploi}
+        ${content.education}
 
          
         
@@ -700,6 +720,11 @@ function loadCesiumData(viewer, city, index) {
         if (dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"]) {
             initSanteCesiumMap( dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"],dataObj["export_partenaires_07_10_2024"],dataObj["localisation-des-services-daccueil-des-urgences-en-corse"],dataObj["localisation-reanimation-hopital-corse"], viewer, index);
             dataLoaded = true;
+        }
+
+        //   ÉDUCATION GLOBALEMENT
+        if (dataObj["annuaire-de-leducation"]) {
+            initEducationCesiumMap(viewer, index);
         }
         
     });
@@ -1932,13 +1957,18 @@ function createPollutionDashboard(pollutionData, pageIndex) {
                         </div>
                     </div>
 
-                    <!-- 🔥 Bouton pour voir la géométrie - ADAPTÉ POUR CESIUM -->
+                    <!-- Bouton pour voir la géométrie - ADAPTÉ POUR CESIUM -->
                     ${zone.geometry ? `
-                        <button class="btn-view-geometry" 
-                                onclick="showZoneGeometryCesiumById(${index})"
-                                title="Afficher cette zone sur la carte 3D">
-                            🗺️ Voir la zone en 3D
-                        </button>
+                    <div class="map-controls">
+
+                    <button class="map-control-btn" onclick="clearMap(${index})">
+                        <i class="fas fa-eraser"></i> Vider
+                    </button>
+                    <button class="map-control-btn" onclick="showZoneGeometryCesiumById(${index})">
+                        <i class="fas fa-eye"></i> 🗺️ Voir la zone sur la carte
+                    </button>
+                </div>
+
                     ` : ''}
                 </div>
 
@@ -2895,6 +2925,35 @@ function initSearch(data, pageIndex) {
         });
     }
 }
+
+window.clearMap = function(pageIndex) {
+    const viewer = window.cesiumViewers[STATE.currentPage];
+    if (!viewer) {
+        console.error('❌ Viewer non trouvé');
+        return;
+    }
+    
+    console.log('🧹 Nettoyage de la carte...');
+    
+    // Supprimer toutes les entités
+    viewer.entities.removeAll();
+    
+    // Feedback visuel
+    const btn = event.target.closest('.map-control-btn');
+    if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Vidé !';
+        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '';
+        }, 2000);
+    }
+    
+    console.log('✅ Carte vidée');
+};
+
 
 // ════════════════════════════════════════════════════════════════════════════════
 // 🚀 INITIALISATION
