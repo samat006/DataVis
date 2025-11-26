@@ -9,6 +9,9 @@
 import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js";
 import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
 import { createLogementDashboard } from "./logement.js";
+import { createTravailDashboard } from "./emploi.js";
+
+
 
 // Token Cesium
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYmI0M2NkMy0xMzFjLTRmYmMtOTg3ZC03MDgxOWFmMGJmNzgiLCJpZCI6MzYwNDM1LCJpYXQiOjE3NjMxMzUzNjl9.xoeEZG1S5zP6292-7MBC6t1aZ-LnuarRwpvehU7bX-M';
@@ -384,6 +387,7 @@ function createDashboard(city, index) {
         waterNapp: '',
         sante: '',
         logement: '',
+        emploi: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -439,6 +443,10 @@ function createDashboard(city, index) {
             if (dataObj["constructionrehabilitation_logementsocial_surface_prix"]) {
                 content.logement = createLogementDashboard(dataObj["constructionrehabilitation_logementsocial_surface_prix"],dataObj["logements-et-logements-sociaux-dans-les-regions"],dataObj["insee-log-t8m-confort-des-residences-principales"], index);}
        
+            // EMPLOI
+            if (dataObj["insee-emp-g2-taux-de-chomage-au-sens-du-recensement-des-15-64-ans-par-diplome-e0"]) {
+                content.emploi = createTravailDashboard(dataObj["insee-emp-g2-taux-de-chomage-au-sens-du-recensement-des-15-64-ans-par-diplome-e0"],dataObj["insee-rev-g1-taux-de-pauvrete-par-tranche-d-age-du-referent-fiscal-en-2020"],dataObj["insee-rev-g2-taux-de-pauvrete-par-statut-d-occupation-du-logement-du-referent-fi"],dataObj["insee-sal-g1-salaire-net-horaire-moyen-en-euros-selon-la-categorie-socioprofess0"], index);}
+
         }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
             }
@@ -466,6 +474,7 @@ function createDashboard(city, index) {
         ${content.tables}
         ${content.sante}
         ${content.logement}
+        ${content.emploi}
 
          
         

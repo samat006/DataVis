@@ -4,7 +4,7 @@
  * ════════════════════════════════════════════════════════════════════════════════
  */
 
-function createTravailDashboard(chomageParDiplome, pauvreteParAge, pauvreteLogement, csoProfessionnelles, pageIndex) {
+export function createTravailDashboard(chomageParDiplome, pauvreteParAge, pauvreteLogement, csoProfessionnelles, pageIndex) {
     console.log('💼 Création du dashboard travail pour page:', pageIndex);
     
     const stats = calculateTravailStats(chomageParDiplome, pauvreteParAge, pauvreteLogement, csoProfessionnelles);

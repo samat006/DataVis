@@ -16,7 +16,7 @@ export function createSanteDashboard(professionelsSante, structuresSociales, hop
     container.innerHTML = `
         <!-- EN-TÊTE -->
         <div class="sante-dashboard-header">
-            <h2><i class="fas fa-heartbeat"></i> Santé & Bien-être des Populations</h2>
+            <h2><i class="fas fa-heartbeat"></i> Santé </h2>
             <p>Vue d'ensemble de l'offre de soins et d'accompagnement social en Corse</p>
         </div>
 
