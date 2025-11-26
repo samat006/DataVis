@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════════════
 import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js";
 import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
+import { createLogementDashboard } from "./logement.js";
 
 // Token Cesium
 Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYmI0M2NkMy0xMzFjLTRmYmMtOTg3ZC03MDgxOWFmMGJmNzgiLCJpZCI6MzYwNDM1LCJpYXQiOjE3NjMxMzUzNjl9.xoeEZG1S5zP6292-7MBC6t1aZ-LnuarRwpvehU7bX-M';
@@ -381,6 +382,8 @@ function createDashboard(city, index) {
         decharge: '',
         water: '',
         waterNapp: '',
+        sante: '',
+        logement: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -432,7 +435,9 @@ function createDashboard(city, index) {
             if (dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"]) {
                 content.sante = createSanteDashboard(dataObj["annuaire-sante-liste-localisation-et-tarifs-des-professionnels-de-sante2"],dataObj["export_partenaires_07_10_2024"],dataObj["localisation-des-services-daccueil-des-urgences-en-corse"],dataObj["localisation-reanimation-hopital-corse"], index);}
 
-       
+            // LOGEMENT 
+            if (dataObj["constructionrehabilitation_logementsocial_surface_prix"]) {
+                content.logement = createLogementDashboard(dataObj["constructionrehabilitation_logementsocial_surface_prix"],dataObj["logements-et-logements-sociaux-dans-les-regions"],dataObj["insee-log-t8m-confort-des-residences-principales"], index);}
        
         }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
@@ -460,6 +465,8 @@ function createDashboard(city, index) {
         ${circleChart}
         ${content.tables}
         ${content.sante}
+        ${content.logement}
+
          
         
     `;

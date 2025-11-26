@@ -103,6 +103,8 @@ ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/eau")
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/temp")
 ajouter_donnees_au_chapitre(livre, chapitre_id=3, dossier="environnemental/dechet")
 ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/sante")
+ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/log")
+
 
 
 
