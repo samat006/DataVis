@@ -400,6 +400,7 @@ function createDashboard(city, index) {
         emploi: '',
         education: '',
         transport: '',
+        seniors: '',
         birthRate: 0,
         deathRate: 0
     };

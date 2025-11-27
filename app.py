@@ -107,6 +107,8 @@ ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/log")
 ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/job")
 ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/education")
 ajouter_donnees_au_chapitre(livre, chapitre_id=4, dossier="bienPop/transport")
+ajouter_donnees_au_chapitre(livre, chapitre_id=5, dossier="chapitre5/senior")
+
 
 
 
