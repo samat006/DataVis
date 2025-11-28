@@ -1,0 +1,576 @@
+/* ════════════════════════════════════════════════════════════════════════════════
+   ⚽ DASHBOARD SPORT & INFRASTRUCTURES - STYLES COMPLETS
+   ════════════════════════════════════════════════════════════════════════════════ */
+
+.sport-dashboard {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* EN-TÊTE */
+.sport-dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+}
+
+.sport-dashboard-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.sport-dashboard-header p {
+    margin: 0;
+    font-size: 1.1em;
+    opacity: 0.95;
+}
+
+/* STATS GLOBALES */
+.sport-stats-global {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.sport-stat-card {
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sport-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sport-stat-card .stat-icon {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.sport-stat-card .stat-content {
+    flex: 1;
+}
+
+.sport-stat-card .stat-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.sport-stat-card .stat-label {
+    font-size: 1em;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.sport-stat-card .stat-detail {
+    font-size: 0.9em;
+    opacity: 0.85;
+    margin-top: 6px;
+}
+
+/* SECTIONS */
+.sport-section {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+/* CARTE CESIUM */
+.sport-map-container {
+    height: 600px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+}
+
+.cesium-sport-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+.map-legend-sport {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(6, 182, 212, 0.2);
+    padding: 20px;
+    border-radius: 16px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+}
+
+.map-legend-sport h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.map-legend-sport h4 i {
+    color: #06b6d4;
+}
+
+.map-legend-sport .legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.map-legend-sport .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #374151;
+    font-weight: 600;
+}
+
+/* GRID TYPES */
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.type-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.type-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.type-card-header {
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-icon {
+    font-size: 2.5em;
+    line-height: 1;
+}
+
+.type-count {
+    font-size: 2em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.type-card-body {
+    padding: 20px;
+}
+
+.type-card-body h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #111827;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.type-bar {
+    height: 8px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.type-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* RANKING COMMUNES */
+.communes-ranking {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.commune-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: #f9fafb;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.commune-rank-item:hover {
+    background: #f3f4f6;
+    transform: translateX(4px);
+}
+
+.commune-rank-badge {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1em;
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+.commune-rank-name {
+    min-width: 150px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.commune-rank-bar {
+    flex: 1;
+    height: 36px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.commune-rank-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: white;
+    font-weight: 800;
+    font-size: 0.9em;
+    border-radius: 8px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ÉTAT DES TERRAINS */
+.etat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.etat-card {
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.etat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.etat-card.service {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-color: #10b981;
+}
+
+.etat-card.hors {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+}
+
+.etat-card.autre {
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    border-color: #6b7280;
+}
+
+.etat-icon {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+}
+
+.etat-value {
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.etat-card.service .etat-value {
+    color: #065f46;
+}
+
+.etat-card.hors .etat-value {
+    color: #991b1b;
+}
+
+.etat-card.autre .etat-value {
+    color: #374151;
+}
+
+.etat-label {
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.etat-card.service .etat-label {
+    color: #065f46;
+}
+
+.etat-card.hors .etat-label {
+    color: #991b1b;
+}
+
+.etat-card.autre .etat-label {
+    color: #374151;
+}
+
+.etat-percent {
+    font-size: 1.5em;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.etat-card.service .etat-percent {
+    color: #065f46;
+}
+
+.etat-card.hors .etat-percent {
+    color: #991b1b;
+}
+
+.etat-card.autre .etat-percent {
+    color: #374151;
+}
+
+.etat-insight {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-left: 4px solid #3b82f6;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.etat-insight .insight-icon {
+    font-size: 2.5em;
+    line-height: 1;
+}
+
+.etat-insight .insight-text {
+    font-size: 0.95em;
+    color: #1e40af;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.etat-insight strong {
+    color: #1e3a8a;
+    font-weight: 800;
+}
+
+/* GRAPHIQUES */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.chart-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    border: 2px solid #e5e7eb;
+}
+
+.chart-wrapper h4 {
+    margin: 0 0 20px 0;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.chart-wrapper canvas {
+    max-height: 300px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .types-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .sport-dashboard-header h2 {
+        font-size: 1.6em;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .sport-stats-global,
+    .types-grid,
+    .etat-cards,
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .map-controls {
+        justify-content: stretch;
+    }
+    
+    .map-control-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .sport-map-container {
+        height: 400px;
+    }
+    
+    .map-legend-sport {
+        position: static;
+        margin-bottom: 15px;
+        max-width: 100%;
+    }
+    
+    .commune-rank-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .commune-rank-name {
+        min-width: auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .sport-stat-card .stat-value,
+    .etat-value {
+        font-size: 2em;
+    }
+    
+    .type-count {
+        font-size: 1.5em;
+    }
+    
+    .commune-rank-badge {
+        width: 36px;
+        height: 36px;
+        font-size: 1em;
+    }
+}
+
+/* ANIMATIONS */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.type-card,
+.commune-rank-item,
+.etat-card {
+    animation: slideInLeft 0.5s ease;
+}
+
+/* SCROLLBAR */
+.sport-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sport-section::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.sport-section::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 4px;
+}
+
+.sport-section::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* FOCUS ACCESSIBILITÉ */
+.map-control-btn:focus,
+.toggle-section-btn:focus {
+    outline: 3px solid rgba(6, 182, 212, 0.5);
+    outline-offset: 2px;
+}
+
+/* BADGES SPÉCIAUX */
+.commune-rank-item:nth-child(1) .commune-rank-badge {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+}
+
+.commune-rank-item:nth-child(2) .commune-rank-badge {
+    background: linear-gradient(135deg, #9ca3af, #6b7280);
+    box-shadow: 0 4px 12px rgba(156, 163, 175, 0.4);
+}
+
+.commune-rank-item:nth-child(3) .commune-rank-badge {
+    background: linear-gradient(135deg, #fb923c, #f97316);
+    box-shadow: 0 4px 12px rgba(251, 146, 60, 0.4);
+}

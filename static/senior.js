@@ -292,7 +292,7 @@ function storeSeniorsData(communes, departement, pageIndex) {
 }
 
 window.showSeniorsOnMap = function(pageIndex) {
-    const viewer = window.cesiumViewers[`seniors-${pageIndex}`];
+    const viewer = window.cesiumViewers[pageIndex];
     const data = window.seniorsDataStore[pageIndex];
     
     if (!viewer || !data) {

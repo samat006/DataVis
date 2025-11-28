@@ -13,6 +13,11 @@ import { createTravailDashboard } from "./emploi.js";
 import { createEducationDashboard ,initEducationCesiumMap} from "./education.js";
 import {  createTransportDashboard } from "./transport.js";
 import { createSeniorsDashboard} from "./senior.js";
+import { createSportDashboard } from "./sport.js";
+import { createConclusionDashboard } from "./conclusion.js";
+// Importer
+import { createSourcesPage } from './sources.js';
+
 
 
 // Token Cesium
@@ -401,6 +406,8 @@ function createDashboard(city, index) {
         education: '',
         transport: '',
         seniors: '',
+        sport: '',
+        conclusion: '',
         birthRate: 0,
         deathRate: 0
     };
@@ -413,6 +420,7 @@ function createDashboard(city, index) {
             //PYRAMIDE DES ÂGES
             if (dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']) {
                 content.pyramid = createAgePyramid(dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3']);
+                console.log("onj", dataObj['insee-population-par-sexe-et-age-en-2020-pop-t3'],"index",i);
             }
             
             // DÉMOGRAPHIE INSEE
@@ -478,11 +486,42 @@ function createDashboard(city, index) {
             if (dataObj["60-et-plus_indicateurs-au-niveau-de-la-commune"] ) {
                 content.seniors = createSeniorsDashboard( dataObj["60-et-plus_indicateurs-au-niveau-de-la-commune"], dataObj["75-ans-et-plus-indicateurs-de-vieillissement-par-departement"], index);}
             
+            // SPORT
+            if (dataObj["terrains-sportifs-en-corse"]) {
+                content.sport = createSportDashboard(dataObj["terrains-sportifs-en-corse"], index);}
+           
+
             }catch (error) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
             }
     });
     
+
+    if (city.title === 'Annexes') {
+    console.log('📁 Page Annexes détectée');
+    
+    // Retourner un placeholder immédiatement
+    const placeholder = `
+        <div class="sources-loading" id="sources-placeholder-${index}">
+            <div class="loader"></div>
+            <p>Chargement des sources...</p>
+        </div>
+    `;
+    
+    // Charger le contenu réel en arrière-plan
+    setTimeout(async () => {
+        const content = await createSourcesPage(index);
+        const placeholderElement = document.getElementById(`sources-placeholder-${index}`);
+        if (placeholderElement) {
+            placeholderElement.outerHTML = content;
+        }
+    }, 100);
+    
+    return placeholder;
+}         // CONCLUSION
+          //  if(dataObj["conclusionFINAL"]){
+              content.conclusion= createConclusionDashboard(dataArray, index); 
+
     // Diagramme circulaire
     const circleChart = createCircleChart(content.birthRate, content.deathRate);
     
@@ -509,9 +548,16 @@ function createDashboard(city, index) {
         ${content.education}
         ${content.transport}
         ${content.seniors}
+        ${content.sport}
+        ${content.conclusion}
     `;
 }
+// Structure de fichiers (exemple)
+  
+ 
 
+
+// 
 /**
  * Crée un dashboard vide
  * @param {Object} city - Données de la ville
