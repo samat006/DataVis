@@ -573,18 +573,13 @@ SOFTWARE.
 
 Pour toute question ou assistance :
 
-- 📧 **Email** : support@corse-datavis.fr
+- 📧 **Email** : asamathseck@gmail.com
 - 💬 **Discord** : [Rejoindre le serveur](https://discord.gg/...)
 - 🐛 **Issues** : [GitHub Issues](https://github.com/votre-username/corse-datavis/issues)
-- 📖 **Documentation** : [Wiki](https://github.com/votre-username/corse-datavis/wiki)
+- 📖 **Documentation** : [Wiki](https://github.com/samat006/corse-datavis/wiki)
 
 ---
 
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=votre-username/corse-datavis&type=Date)](https://star-history.com/#Abdou-samath/corse-datavis&Date)
-
----
 
 <div align="center">
 
