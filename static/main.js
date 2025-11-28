@@ -39,8 +39,8 @@ window.cesiumViewers = {};
 // Coordonnées par défaut (Corse)
 const DEFAULT_COORDS = {
     lon: 9.0,
-    lat: 42.0,
-    height: 50000
+    lat: 41.6,
+    height: 200000
 };
 
 // ════════════════════════════════════════════════════════════════════════════════
@@ -501,7 +501,10 @@ function createDashboard(city, index) {
      content.introduction=createIntroductionPage(index)
         }
 
-    if (city.title === 'Annexes') {
+    if(city.title=="Conclusion"){
+              content.conclusion= createConclusionPage( index); 
+            }
+    if (city.title === 'Source') {
     console.log('📁 Page Annexes détectée');
     
     // Retourner un placeholder immédiatement
@@ -523,9 +526,7 @@ function createDashboard(city, index) {
     
     return placeholder;
 }         // CONCLUSION
-            if(city.title=="Conclusion"){
-              content.conclusion= createConclusionPage( index); 
-            }
+          
 
     // Diagramme circulaire
     const circleChart = createCircleChart(content.birthRate, content.deathRate);

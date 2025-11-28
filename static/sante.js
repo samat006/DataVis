@@ -617,7 +617,7 @@ export function initSanteCesiumMap(professionnels, structures, hopitaux, centres
     
     // Vue sur la Corse
      viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(8.6, 42, 1500000),
+        destination: Cesium.Cartesian3.fromDegrees(9.5, 41.5, 2500000),
         orientation: {
             heading: Cesium.Math.toRadians(0),
             pitch: Cesium.Math.toRadians(-45),
@@ -775,7 +775,7 @@ window.toggleSection = function(sectionId) {
 /**
  * Fonction de vol vers un point de santé
  */
-window.flyToSante = function(lat, lon, pageIndex, height = 2000) {
+window.flyToSante = function(lat, lon, pageIndex, height = 20000) {
     const viewer = window.cesiumViewers[pageIndex];
     if (!viewer || !lat || !lon) return;
     
