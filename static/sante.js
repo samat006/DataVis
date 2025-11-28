@@ -616,14 +616,14 @@ export function initSanteCesiumMap(professionnels, structures, hopitaux, centres
     });
     
     // Vue sur la Corse
-    viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(9.0, 42.15, 200000),
+     viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(8.6, 42, 1500000),
         orientation: {
             heading: Cesium.Math.toRadians(0),
             pitch: Cesium.Math.toRadians(-45),
             roll: 0
         },
-        duration: 2
+        duration: 1
     });
 }
 

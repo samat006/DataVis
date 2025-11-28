@@ -6,6 +6,7 @@
 // ════════════════════════════════════════════════════════════════════════════════
 // 🔧 CONFIGURATION GLOBALE
 // ════════════════════════════════════════════════════════════════════════════════
+import { createIntroductionPage } from "./introduction.js";
 import { createTriSelectifDashboard, createDechargeDashboard } from "./dechet.js";
 import { createSanteDashboard,initSanteCesiumMap } from "./sante.js";
 import { createLogementDashboard } from "./logement.js";
@@ -14,8 +15,7 @@ import { createEducationDashboard ,initEducationCesiumMap} from "./education.js"
 import {  createTransportDashboard } from "./transport.js";
 import { createSeniorsDashboard} from "./senior.js";
 import { createSportDashboard } from "./sport.js";
-import { createConclusionDashboard } from "./conclusion.js";
-// Importer
+import { createConclusionPage } from "./conclusion.js";
 import { createSourcesPage } from './sources.js';
 
 
@@ -408,6 +408,7 @@ function createDashboard(city, index) {
         seniors: '',
         sport: '',
         conclusion: '',
+        introduction:'',
         birthRate: 0,
         deathRate: 0
     };
@@ -495,7 +496,10 @@ function createDashboard(city, index) {
             console.error(`❌ Erreur dataObj[${i}]:`, error);
             }
     });
-    
+
+    if (city.title === 'Introduction') {
+     content.introduction=createIntroductionPage(index)
+        }
 
     if (city.title === 'Annexes') {
     console.log('📁 Page Annexes détectée');
@@ -519,8 +523,9 @@ function createDashboard(city, index) {
     
     return placeholder;
 }         // CONCLUSION
-          //  if(dataObj["conclusionFINAL"]){
-              content.conclusion= createConclusionDashboard(dataArray, index); 
+            if(city.title=="Conclusion"){
+              content.conclusion= createConclusionPage( index); 
+            }
 
     // Diagramme circulaire
     const circleChart = createCircleChart(content.birthRate, content.deathRate);
@@ -550,6 +555,7 @@ function createDashboard(city, index) {
         ${content.seniors}
         ${content.sport}
         ${content.conclusion}
+       ${ content.introduction}
     `;
 }
 // Structure de fichiers (exemple)

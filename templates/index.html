@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='sport.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='conclusion.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='source.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='introduction.css') }}">
 
 
 
@@ -50,11 +51,11 @@
             
             <section class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">PORTRAIT DES TERRITOIRES DE CORSE</h1>
-                    <p class="hero-subtitle">Data Visualisation Interactive • Concours 2025</p>
+                    <h1 class="hero-title">LE BIEN-ETRE DU TERRITOIRE CORSE </h1>
+                    <p class="hero-subtitle">Data Visualisation  • Concours 2025</p>
+                    <p class="hero-subtitle">Le projet se présente sous la forme d’un livre : à droite sont affichées les statistiques, et à gauche se trouve une illustration cartographique.</p>
+
                     <div class="hero-badges">
-                        <span class="badge"><i class="fas fa-mountain"></i> {{ cities|length }} Territoires</span>
-                        <span class="badge"><i class="fas fa-users"></i> {{ "{:,}".format(stats.total_population) }} Habitants</span>
                         <span class="badge"><i class="fas fa-chart-line"></i> INSEE 2025</span>
                     </div>
                     <button onclick="showView('book')" class="btn btn-primary">
