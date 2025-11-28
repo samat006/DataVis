@@ -3,4 +3,4 @@ data/*
 brouillon/
 brouillon/
 /monEnv
-data/livre_mis_a_jour.json
+data/livre_mis_a_jour.jsondata/*.json
