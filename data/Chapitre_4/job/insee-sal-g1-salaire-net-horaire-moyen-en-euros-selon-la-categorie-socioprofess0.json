@@ -1,0 +1,32 @@
+[
+    {
+        "empty": "Cadres*",
+        "ensemble": 22.9,
+        "femmes": 20.8,
+        "hommes": 24.1
+    },
+    {
+        "empty": "Ouvriers",
+        "ensemble": 12.1,
+        "femmes": 10.2,
+        "hommes": 12.4
+    },
+    {
+        "empty": "Ensemble",
+        "ensemble": 14.0,
+        "femmes": 13.0,
+        "hommes": 14.8
+    },
+    {
+        "empty": "Professions interm\u00e9diaires",
+        "ensemble": 16.0,
+        "femmes": 14.9,
+        "hommes": 17.0
+    },
+    {
+        "empty": "Employ\u00e9s",
+        "ensemble": 11.5,
+        "femmes": 11.3,
+        "hommes": 12.0
+    }
+]

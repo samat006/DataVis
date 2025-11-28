@@ -1,0 +1,45 @@
+ [
+    {
+      "id": 1,
+      "title": "Introduction",
+      "description": "Présentation du projet, enjeux, objectifs et méthodologie.",
+      "data": []
+    },
+    {
+      "id": 2,
+      "title": "Contexte territorial et démographique",
+      "description": "Contexte territorial et démographiqu.",
+      "data": []
+    },
+    {
+      "id": 3,
+      "title": "Bien-être environnemental",
+      "description": "Indicateurs environnementaux, cartographie et heatmaps.",
+      "data": []
+    },
+    {
+      "id": 4,
+      "title": "Bien-être des populations",
+      "description": "Sante, Logement & Habitat Education,Transport.",
+      "data": []
+    },
+    {
+      "id": 5,
+      "title": "Bien vieillir",
+      "description": "Population 60+, services disponibles et évolution temporelle.",
+      "data": []
+    },
+    {
+      "id": 6,
+      "title": "Conclusion",
+      "description": "ressume",
+      "data": []
+    },
+    {
+      "id": 7,
+      "title": "Source",
+      "description": "Sources de données et méthodologie.",
+      "data": []
+    }
+  ]
+

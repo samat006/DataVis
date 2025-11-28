@@ -41,7 +41,7 @@
                 <div class="nav-menu">
                     <a onclick="showView('home')" class="nav-link active"><i class="fas fa-home"></i> Accueil</a>
                     <a onclick="showView('book')" class="nav-link"><i class="fas fa-book"></i> Livre 3D</a>
-                    <a href="/api/sources/tree" target="_blank" class="nav-link"><i class="fas fa-code"></i> Arbre des fiches</a>
+                    <a href="/api/livre" target="_blank" class="nav-link"><i class="fas fa-code"></i> API</a>
                 </div>
             </div>
         </nav>
@@ -70,25 +70,20 @@
                     <div class="stats-grid">
                         <div class="stat-box">
                             <div class="stat-icon"><i class="fas fa-users"></i></div>
-                            <div class="stat-value">{{ "{:,}".format(stats.total_population) }}</div>
                             <div class="stat-label">Population Totale</div>
-                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> +{{ stats.annual_growth }}%/an</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-icon"><i class="fas fa-wifi"></i></div>
-                            <div class="stat-value">{{ stats.avg_fibre_coverage }}%</div>
                             <div class="stat-label">Couverture Fibre</div>
                             <div class="stat-trend up"><i class="fas fa-arrow-up"></i> Progression</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-icon"><i class="fas fa-signal"></i></div>
-                            <div class="stat-value">{{ stats['5g_antennas'] }}</div>
                             <div class="stat-label">Antennes 5G</div>
                             <div class="stat-trend up"><i class="fas fa-check"></i> Actif</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="stat-value">{{ "{:,}".format(stats.students) }}</div>
                             <div class="stat-label">Élèves</div>
                             <div class="stat-trend"><i class="fas fa-trophy"></i> Éducation</div>
                         </div>
@@ -158,7 +153,6 @@
 
         <script>
             const CITIES_DATA = {{ livre | tojson }};
-            const GLOBAL_STATS = {{ stats | tojson }};
         </script>
         
 <script type="module" src="{{ url_for('static', filename='main.js') }}"></script>

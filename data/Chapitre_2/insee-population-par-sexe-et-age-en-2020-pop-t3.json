@@ -1,0 +1,79 @@
+[
+    {
+        "empty": "30 \u00e0 44 ans",
+        "hommes": "31\u00a0333",
+        "id": 18.8,
+        "femmes": "33\u00a0628",
+        "id0": 19.0
+    },
+    {
+        "empty": "60 \u00e0 74 ans",
+        "hommes": "31\u00a0228",
+        "id": 18.7,
+        "femmes": "33\u00a0366",
+        "id0": 18.9
+    },
+    {
+        "empty": "90 ans ou plus",
+        "hommes": "1\u00a0297",
+        "id": 0.8,
+        "femmes": "3\u00a0225",
+        "id0": 1.8
+    },
+    {
+        "empty": "65 ans ou plus",
+        "hommes": "37\u00a0085",
+        "id": 22.2,
+        "femmes": "44\u00a0748",
+        "id0": 25.3
+    },
+    {
+        "empty": "Ensemble",
+        "hommes": "167\u00a0070",
+        "id": 100.0,
+        "femmes": "176\u00a0631",
+        "id0": 100.0
+    },
+    {
+        "empty": "0 \u00e0 14 ans",
+        "hommes": "27\u00a0018",
+        "id": 16.2,
+        "femmes": "25\u00a0680",
+        "id0": 14.5
+    },
+    {
+        "empty": "0 \u00e0 19 ans",
+        "hommes": "36\u00a0001",
+        "id": 21.5,
+        "femmes": "33\u00a0687",
+        "id0": 19.1
+    },
+    {
+        "empty": "45 \u00e0 59 ans",
+        "hommes": "35\u00a0038",
+        "id": 21.0,
+        "femmes": "36\u00a0349",
+        "id0": 20.6
+    },
+    {
+        "empty": "75 \u00e0 89 ans",
+        "hommes": "15\u00a0361",
+        "id": 9.2,
+        "femmes": "19\u00a0476",
+        "id0": 11.0
+    },
+    {
+        "empty": "15 \u00e0 29 ans",
+        "hommes": "25\u00a0795",
+        "id": 15.4,
+        "femmes": "24\u00a0908",
+        "id0": 14.1
+    },
+    {
+        "empty": "20 \u00e0 64 ans",
+        "hommes": "93\u00a0983",
+        "id": 56.3,
+        "femmes": "98\u00a0197",
+        "id0": 55.6
+    }
+]

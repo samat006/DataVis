@@ -1,0 +1,2060 @@
+[
+    {
+        "site": "Conca",
+        "insee": "2A092",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Conca",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.33031186511,
+            "lat": 41.7530813124
+        }
+    },
+    {
+        "site": "San-Martino-di-Lota",
+        "insee": "2B305",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "San-Martino-di-Lota",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.43163085599,
+            "lat": 42.7323992652
+        }
+    },
+    {
+        "site": "Morosaglia",
+        "insee": "2B169",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Morosaglia",
+        "infos": "Ponte Leccia",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.25468558646,
+            "lat": 42.4476687598
+        }
+    },
+    {
+        "site": "Lama",
+        "insee": "2B136",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Lama",
+        "infos": "Novella Urtaca Pietralba (sivom Ostriconi)",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.16621069911,
+            "lat": 42.5804431828
+        }
+    },
+    {
+        "site": "Cauro",
+        "insee": "2A085",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cauro",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.89390218223,
+            "lat": 41.9042036105
+        }
+    },
+    {
+        "site": "Porto-Vecchio",
+        "insee": "2A247",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Porto-Vecchio",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.25363087024,
+            "lat": 41.5924932873
+        }
+    },
+    {
+        "site": "Carg\u00e8se",
+        "insee": "2A065",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Carg\u00e8se",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.62659836115,
+            "lat": 42.1544254567
+        }
+    },
+    {
+        "site": "Sant'Andr\u00e9a-di-Cotone",
+        "insee": "2B293",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Sant'Andr\u00e9a-di-Cotone",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.47199287722,
+            "lat": 42.3152789524
+        }
+    },
+    {
+        "site": "Lucciana",
+        "insee": "2B148",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Lucciana",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.47269139438,
+            "lat": 42.5413974263
+        }
+    },
+    {
+        "site": "Ajaccio",
+        "insee": "2A004",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Ajaccio",
+        "infos": "(capa) St antoine 2",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.70132275974,
+            "lat": 41.9347926638
+        }
+    },
+    {
+        "site": "Monacia-d'Aull\u00e8ne",
+        "insee": "2A163",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Monacia-d'Aull\u00e8ne",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.01194250381,
+            "lat": 41.5249319364
+        }
+    },
+    {
+        "site": "Coggia",
+        "insee": "2A090",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Coggia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.73524258056,
+            "lat": 42.1117512753
+        }
+    },
+    {
+        "site": "Guagno",
+        "insee": "2A131",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Guagno",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.98389627863,
+            "lat": 42.1783646694
+        }
+    },
+    {
+        "site": "Bisinchi",
+        "insee": "2B039",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Bisinchi",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.31902586907,
+            "lat": 42.485929834
+        }
+    },
+    {
+        "site": "Talasani",
+        "insee": "2B319",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Talasani",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.50731616445,
+            "lat": 42.4178789576
+        }
+    },
+    {
+        "site": "Sari-Solenzara",
+        "insee": "2A269",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Sari-Solenzara",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.35220683826,
+            "lat": 41.8133599634
+        }
+    },
+    {
+        "site": "Arbori",
+        "insee": "2A019",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Arbori",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.79544743856,
+            "lat": 42.1278317001
+        }
+    },
+    {
+        "site": "Ucciani",
+        "insee": "2A330",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Ucciani",
+        "infos": "Ct\u00e9 de Cmes Haute Vall\u00e9e de la Gravona",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.98239119896,
+            "lat": 42.0469909829
+        }
+    },
+    {
+        "site": "Omessa",
+        "insee": "2B193",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Omessa",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.19362569461,
+            "lat": 42.3827760667
+        }
+    },
+    {
+        "site": "Volpajola",
+        "insee": "2B355",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Volpajola",
+        "infos": "Scolca",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.36071505878,
+            "lat": 42.5200129525
+        }
+    },
+    {
+        "site": "\u00c9visa",
+        "insee": "2A108",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": null,
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.82039690418,
+            "lat": 42.285250229
+        }
+    },
+    {
+        "site": "Valle-di-Rostino",
+        "insee": "2B337",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Valle-di-Rostino",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.26425666892,
+            "lat": 42.4600748824
+        }
+    },
+    {
+        "site": "Montemaggiore",
+        "insee": "2B167",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Montegrosso",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.85623474811,
+            "lat": 42.543505718
+        }
+    },
+    {
+        "site": "Azilone-Ampaza",
+        "insee": "2A026",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Azilone-Ampaza",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.01683572798,
+            "lat": 41.8704409452
+        }
+    },
+    {
+        "site": "Cristinacce",
+        "insee": "2A100",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cristinacce",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.85509262516,
+            "lat": 42.2434011098
+        }
+    },
+    {
+        "site": "Partinello",
+        "insee": "2A203",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Partinello",
+        "infos": "Sivom SIA",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.68973829673,
+            "lat": 42.3189049324
+        }
+    },
+    {
+        "site": "Lavatoggio",
+        "insee": "2B138",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Lavatoggio",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.86153291586,
+            "lat": 42.5733311886
+        }
+    },
+    {
+        "site": "Calcatoggio",
+        "insee": "2A048",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Calcatoggio",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.73772286465,
+            "lat": 42.0284281165
+        }
+    },
+    {
+        "site": "Stazzona",
+        "insee": "2B291",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Stazzona",
+        "infos": "Piedicroce",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.37520653497,
+            "lat": 42.379383324
+        }
+    },
+    {
+        "site": "Castirla",
+        "insee": "2B083",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Castirla",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.12608884402,
+            "lat": 42.3685154876
+        }
+    },
+    {
+        "site": "Vivario",
+        "insee": "2B354",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Vivario",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 9.12065538823,
+            "lat": 42.1523820761
+        }
+    },
+    {
+        "site": "Pancheraccia",
+        "insee": "2B201",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pancheraccia",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.40495119655,
+            "lat": 42.1964708452
+        }
+    },
+    {
+        "site": "Vescovato",
+        "insee": "2B346",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Vescovato",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.47327679289,
+            "lat": 42.5156004933
+        }
+    },
+    {
+        "site": "Porri",
+        "insee": "2B245",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Porri",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.44236110212,
+            "lat": 42.4493786063
+        }
+    },
+    {
+        "site": "Campile",
+        "insee": "2B054",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Campile",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.35529599495,
+            "lat": 42.4960198579
+        }
+    },
+    {
+        "site": "Canari",
+        "insee": "2B058",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Canari",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.34556643621,
+            "lat": 42.8430542103
+        }
+    },
+    {
+        "site": "Castifao",
+        "insee": "2B080",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Castifao",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.11827028996,
+            "lat": 42.5259960689
+        }
+    },
+    {
+        "site": "Calenzana",
+        "insee": "2B049",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Calenzana",
+        "infos": "Ct\u00e9 Cmes calvi Balagne",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.80369225001,
+            "lat": 42.4784267166
+        }
+    },
+    {
+        "site": "Asco",
+        "insee": "2B023",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Asco",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.99704854725,
+            "lat": 42.4346334244
+        }
+    },
+    {
+        "site": "Bastia",
+        "insee": "2B033",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Bastia",
+        "infos": "CAB Teghime",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.42502133338,
+            "lat": 42.6864768806
+        }
+    },
+    {
+        "site": "Popolasca",
+        "insee": "2B244",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Popolasca",
+        "infos": "Ct\u00e9 de Cmes Aghja Nova",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.13509572418,
+            "lat": 42.437399462
+        }
+    },
+    {
+        "site": "Quenza",
+        "insee": "2A254",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Quenza",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.2009533879,
+            "lat": 41.8077584567
+        }
+    },
+    {
+        "site": "Moltifao",
+        "insee": "2B162",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Moltifao",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.12322901577,
+            "lat": 42.4744158583
+        }
+    },
+    {
+        "site": "Rosazia",
+        "insee": "2A262",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Rosazia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.86199135489,
+            "lat": 42.1258026167
+        }
+    },
+    {
+        "site": "Pietraserena",
+        "insee": "2B226",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pietraserena",
+        "infos": "Ghincaggio",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.35461476082,
+            "lat": 42.2338486385
+        }
+    },
+    {
+        "site": "Lento",
+        "insee": "2B140",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Lento",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.2630678299,
+            "lat": 42.5313679084
+        }
+    },
+    {
+        "site": "Prunelli-di-Fiumorbo",
+        "insee": "2B251",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Prunelli-di-Fiumorbo",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 9.36772895124,
+            "lat": 42.0072330034
+        }
+    },
+    {
+        "site": "Bocognano",
+        "insee": "2A040",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Bocognano",
+        "infos": "Ct\u00e9 de Cmes Haute vall\u00e9e de la Gravona",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.07100445274,
+            "lat": 42.0887432861
+        }
+    },
+    {
+        "site": "Belgod\u00e8re",
+        "insee": "2B034",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Belgod\u00e8re",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.01429591727,
+            "lat": 42.6078945875
+        }
+    },
+    {
+        "site": "Saint-Florent",
+        "insee": "2B298",
+        "departement": "HAUTE-CORSE",
+        "dep": "2b",
+        "commune": "Saint-Florent",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.28317002062,
+            "lat": 42.6872130129
+        }
+    },
+    {
+        "site": "Pianottoli-Caldarello",
+        "insee": "2A215",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Pianottoli-Caldarello",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.04899145818,
+            "lat": 41.5046258305
+        }
+    },
+    {
+        "site": "Luri",
+        "insee": "2B152",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Luri",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.40987964362,
+            "lat": 42.8934435302
+        }
+    },
+    {
+        "site": "Frasseto",
+        "insee": "2A119",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Frasseto",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.03919953409,
+            "lat": 41.9199721408
+        }
+    },
+    {
+        "site": "Prato-di-Giovellina",
+        "insee": "2B248",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Prato-di-Giovellina",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.16926425696,
+            "lat": 42.4191789343
+        }
+    },
+    {
+        "site": "Pietra-di-Verde",
+        "insee": "2B225",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pietra-di-Verde",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.44429684997,
+            "lat": 42.2923417061
+        }
+    },
+    {
+        "site": "Ventiseri",
+        "insee": "2B342",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Ventiseri",
+        "infos": "Chisa",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.36287097036,
+            "lat": 41.9410129854
+        }
+    },
+    {
+        "site": "Venzolasca",
+        "insee": "2B343",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Venzolasca",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.49333701193,
+            "lat": 42.5014054825
+        }
+    },
+    {
+        "site": "Prunelli-di-Casacconi",
+        "insee": "2B250",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Prunelli-di-Casacconi",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.40561122356,
+            "lat": 42.5104109341
+        }
+    },
+    {
+        "site": "Poggio-di-Nazza",
+        "insee": "2B236",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Poggio-di-Nazza",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.29203820739,
+            "lat": 42.052431318
+        }
+    },
+    {
+        "site": "Castello-di-Rostino",
+        "insee": "2B079",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Castello-di-Rostino",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.29768308268,
+            "lat": 42.471301177
+        }
+    },
+    {
+        "site": "Rezza",
+        "insee": "2A259",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Rezza",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.95203254705,
+            "lat": 42.1240747257
+        }
+    },
+    {
+        "site": "Lopigna",
+        "insee": "2A144",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Lopigna",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.85412364517,
+            "lat": 42.0901954462
+        }
+    },
+    {
+        "site": "Sorio",
+        "insee": "2B287",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Sorio",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 9.24430317014,
+            "lat": 42.5778173926
+        }
+    },
+    {
+        "site": "Campitello",
+        "insee": "2B055",
+        "departement": "HAUTE-CORSE",
+        "dep": "2A",
+        "commune": "Campitello",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.3252006896,
+            "lat": 42.526148234
+        }
+    },
+    {
+        "site": "Vezzani",
+        "insee": "2B347",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Vezzani",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.292359887,
+            "lat": 42.1573513565
+        }
+    },
+    {
+        "site": "Sarrola-Carcopino",
+        "insee": "2A271",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Sarrola-Carcopino",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.83437893445,
+            "lat": 42.0010171951
+        }
+    },
+    {
+        "site": "Sollacaro",
+        "insee": "2A284",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Sollacaro",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.88010382989,
+            "lat": 41.7417710939
+        }
+    },
+    {
+        "site": "Pila-Canale",
+        "insee": "2A232",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Pila-Canale",
+        "infos": "(Teppe) Ct\u00e9 de Cmes du Taravo",
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.89878366545,
+            "lat": 41.7923350727
+        }
+    },
+    {
+        "site": "Campo",
+        "insee": "2A056",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Campo",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.00098485443,
+            "lat": 41.890691356
+        }
+    },
+    {
+        "site": "Piana",
+        "insee": "2A212",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Piana",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.62798195907,
+            "lat": 42.2260344023
+        }
+    },
+    {
+        "site": "Bastelica",
+        "insee": "2A031",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Bastelica",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.04861808353,
+            "lat": 41.988063407
+        }
+    },
+    {
+        "site": "Cozzano",
+        "insee": "2A099",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cozzano",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.18658901993,
+            "lat": 41.9335361782
+        }
+    },
+    {
+        "site": "Olmo",
+        "insee": "2B192",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Olmo",
+        "infos": "Monte Sivu Marana Casinca",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.41349985144,
+            "lat": 42.5015366466
+        }
+    },
+    {
+        "site": "Canari",
+        "insee": "2B058",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Canari",
+        "infos": "Nonza",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.34556643621,
+            "lat": 42.8430542103
+        }
+    },
+    {
+        "site": "Guargual\u00e9",
+        "insee": "2A132",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Guargual\u00e9",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.92761040252,
+            "lat": 41.8276384979
+        }
+    },
+    {
+        "site": "Carbuccia",
+        "insee": "2A062",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Carbuccia",
+        "infos": "Haute vall\u00e9e de la Gravona",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.93626600653,
+            "lat": 42.0302927596
+        }
+    },
+    {
+        "site": "Novella",
+        "insee": "2B180",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Novella",
+        "infos": "Pietra",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.1035165681,
+            "lat": 42.5972996408
+        }
+    },
+    {
+        "site": "Arro",
+        "insee": "2A022",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Arro",
+        "infos": "Sivom Cinarca Liamone",
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.8040243417,
+            "lat": 42.0965260296
+        }
+    },
+    {
+        "site": "Ciamannacce",
+        "insee": "2A089",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Ciamannacce",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.13846288557,
+            "lat": 41.9728664628
+        }
+    },
+    {
+        "site": "Canale-di-Verde",
+        "insee": "2B057",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Canale-di-Verde",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.50202161228,
+            "lat": 42.2649423913
+        }
+    },
+    {
+        "site": "Rogliano",
+        "insee": "2B261",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Rogliano",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 9.42539823747,
+            "lat": 42.9720512637
+        }
+    },
+    {
+        "site": "Zonza",
+        "insee": "2A362",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2B",
+        "commune": "Zonza",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 9.26624005547,
+            "lat": 41.7213730193
+        }
+    },
+    {
+        "site": "Cannelle",
+        "insee": "2A060",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cannelle",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.81689575558,
+            "lat": 42.047981907
+        }
+    },
+    {
+        "site": "Sari-d'Orcino",
+        "insee": "2A270",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Sari-d'Orcino",
+        "infos": "Sivom Cinarca Liamone",
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.83377089939,
+            "lat": 42.0648114999
+        }
+    },
+    {
+        "site": "Serra Isolaccia",
+        "insee": "2B275",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "isalacciu di fiumorbu",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.26621042677,
+            "lat": 42.3157105384
+        }
+    },
+    {
+        "site": "Morsiglia",
+        "insee": "2B170",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Morsiglia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.37347710388,
+            "lat": 42.9359197477
+        }
+    },
+    {
+        "site": "Orto",
+        "insee": "2A196",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Orto",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.95741133196,
+            "lat": 42.1989987238
+        }
+    },
+    {
+        "site": "Soccia",
+        "insee": "2A282",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Soccia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.92258883331,
+            "lat": 42.2094271559
+        }
+    },
+    {
+        "site": "Corscia",
+        "insee": "2B095",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Corscia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.05557667176,
+            "lat": 42.3691487665
+        }
+    },
+    {
+        "site": "Sermano",
+        "insee": "2B275",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Sermano",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.26621042677,
+            "lat": 42.3157105384
+        }
+    },
+    {
+        "site": "Santo-Pietro-di-Tenda",
+        "insee": "2B314",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Santo-Pietro-di-Tenda",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.20380969804,
+            "lat": 42.6724371425
+        }
+    },
+    {
+        "site": "Poggiolo",
+        "insee": "2A240",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Poggiolo",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.89848173922,
+            "lat": 42.1628161972
+        }
+    },
+    {
+        "site": "Letia",
+        "insee": "2A141",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Letia",
+        "infos": "Renno",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.87701144967,
+            "lat": 42.214927495
+        }
+    },
+    {
+        "site": "La Porta",
+        "insee": "2B246",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "La Porta",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.35847182054,
+            "lat": 42.4241824082
+        }
+    },
+    {
+        "site": "Ajaccio",
+        "insee": "2A004",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Ajaccio",
+        "infos": "(capa) St antoine 1",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.70132275974,
+            "lat": 41.9347926638
+        }
+    },
+    {
+        "site": "Olivese",
+        "insee": "2A186",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Olivese",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.06885180924,
+            "lat": 41.8404362861
+        }
+    },
+    {
+        "site": "Bonifacio",
+        "insee": "2A041",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Bonifacio",
+        "infos": "(SITDESC)",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.18514890376,
+            "lat": 41.4354987425
+        }
+    },
+    {
+        "site": "Olmeta-di-Capocorso",
+        "insee": "2B187",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Olmeta-di-Capocorso",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.37798697409,
+            "lat": 42.766973441
+        }
+    },
+    {
+        "site": "Forciolo",
+        "insee": "2A117",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Forciolo",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.01587239961,
+            "lat": 41.8481431897
+        }
+    },
+    {
+        "site": "Salice",
+        "insee": "2A266",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Salice",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.90188848529,
+            "lat": 42.1045072661
+        }
+    },
+    {
+        "site": "Cuttoli-Corticchiato",
+        "insee": "2A103",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cuttoli-Corticchiato",
+        "infos": "CAPA",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.88406617978,
+            "lat": 41.976733682
+        }
+    },
+    {
+        "site": "Brando",
+        "insee": "2B043",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Brando",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.45029993821,
+            "lat": 42.7792996993
+        }
+    },
+    {
+        "site": "Petreto-Bicchisano",
+        "insee": "2A211",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Petreto-Bicchisano",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.96953349207,
+            "lat": 41.7703606471
+        }
+    },
+    {
+        "site": "Barrettali",
+        "insee": "2B030",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Barrettali",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.36073943184,
+            "lat": 42.8731830827
+        }
+    },
+    {
+        "site": "Murzo",
+        "insee": "2A174",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Murzo",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.84670847877,
+            "lat": 42.1585493633
+        }
+    },
+    {
+        "site": "Cateri",
+        "insee": "2B084",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Cateri",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.89579087074,
+            "lat": 42.5692984321
+        }
+    },
+    {
+        "site": "Corte",
+        "insee": "2B096",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Corte",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.0828946136,
+            "lat": 42.2700703225
+        }
+    },
+    {
+        "site": "Vico",
+        "insee": "2A348",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Vico",
+        "infos": "(SYVADEC)",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.73051107045,
+            "lat": 42.1506390695
+        }
+    },
+    {
+        "site": "Rutali",
+        "insee": "2B265",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Rutali",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.38160373146,
+            "lat": 42.5827324452
+        }
+    },
+    {
+        "site": "Palasca",
+        "insee": "2B199",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Palasca",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.05733396893,
+            "lat": 42.63006979
+        }
+    },
+    {
+        "site": "Canavaggia",
+        "insee": "2B059",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Canavaggia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.23425707415,
+            "lat": 42.4966282507
+        }
+    },
+    {
+        "site": "Pero-Casevecchie",
+        "insee": "2B210",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pero-Casevecchie",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.46376889393,
+            "lat": 42.4163942737
+        }
+    },
+    {
+        "site": "Sainte-Lucie-de-Tallano",
+        "insee": "2A308",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Sainte-Lucie-de-Tallano",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.06116918689,
+            "lat": 41.6682904009
+        }
+    },
+    {
+        "site": "Sisco",
+        "insee": "2B281",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Sisco",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.44224958213,
+            "lat": 42.8144761556
+        }
+    },
+    {
+        "site": "Zuani",
+        "insee": "2B364",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Zuani",
+        "infos": "Zalana",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.34126627348,
+            "lat": 42.264826425
+        }
+    },
+    {
+        "site": "Azzana",
+        "insee": "2A027",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Azzana",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.93094346781,
+            "lat": 42.1129499138
+        }
+    },
+    {
+        "site": "Rospigliani",
+        "insee": "2B263",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Rospigliani",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.237935796,
+            "lat": 42.1937798194
+        }
+    },
+    {
+        "site": "Marignana",
+        "insee": "2A154",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Marignana",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.72012145017,
+            "lat": 42.2083267447
+        }
+    },
+    {
+        "site": "Pietracorbara",
+        "insee": "2B224",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pietracorbara",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.43811996376,
+            "lat": 42.8446413084
+        }
+    },
+    {
+        "site": "Cognocoli-Monticchi",
+        "insee": "2A091",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cognocoli-Monticchi",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.86559828533,
+            "lat": 41.8017412239
+        }
+    },
+    {
+        "site": "Pastricciola",
+        "insee": "2A204",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Pastricciola",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.01623489472,
+            "lat": 42.1434520228
+        }
+    },
+    {
+        "site": "Lozzi",
+        "insee": "2B147",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Lozzi",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.98031669387,
+            "lat": 42.3625664581
+        }
+    },
+    {
+        "site": "Zilia",
+        "insee": "2B361",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Zilia",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.90376320006,
+            "lat": 42.5186011027
+        }
+    },
+    {
+        "site": "Pioggiola",
+        "insee": "2B235",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pioggiola",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.97529988566,
+            "lat": 42.5232293967
+        }
+    },
+    {
+        "site": "Santa-Maria-Sich\u00e9",
+        "insee": "2A312",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Santa-Maria-Sich\u00e9",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.97997119242,
+            "lat": 41.8839751228
+        }
+    },
+    {
+        "site": "Oletta",
+        "insee": "2B185",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Oletta",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.33321314144,
+            "lat": 42.6416261877
+        }
+    },
+    {
+        "site": "Zicavo",
+        "insee": "2A359",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Zicavo",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.1668409674,
+            "lat": 41.8845132229
+        }
+    },
+    {
+        "site": "Castiglione",
+        "insee": "2B081",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Castiglione",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.11404108561,
+            "lat": 42.4094045132
+        }
+    },
+    {
+        "site": "Ersa",
+        "insee": "2B107",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Ersa",
+        "infos": "Ct\u00e9 de Cmes du Cap Corse",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.38235735891,
+            "lat": 42.9871049875
+        }
+    },
+    {
+        "site": "Gal\u00e9ria",
+        "insee": "2B121",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Gal\u00e9ria",
+        "infos": "Manso - Ct\u00e9 de Cmes Calvi Balagne",
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.70707754451,
+            "lat": 42.4081803478
+        }
+    },
+    {
+        "site": "Osani",
+        "insee": "2A197",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Osani",
+        "infos": "Sivom SIA",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.62327012341,
+            "lat": 42.3435694896
+        }
+    },
+    {
+        "site": "Casaglione",
+        "insee": "2A070",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Casaglione",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.75999305453,
+            "lat": 42.0695824094
+        }
+    },
+    {
+        "site": "Borgo",
+        "insee": "2B042",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Borgo",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.45690314359,
+            "lat": 42.573930097
+        }
+    },
+    {
+        "site": "Loreto-di-Casinca",
+        "insee": "2B145",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Loreto-di-Casinca",
+        "infos": "Ct\u00e9 de Cmes Casinca",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.42503725117,
+            "lat": 42.4764297797
+        }
+    },
+    {
+        "site": "Cannelle",
+        "insee": "2A060",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Cannelle",
+        "infos": "SIVOM Cinarca Liamone",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 8.81689575558,
+            "lat": 42.047981907
+        }
+    },
+    {
+        "site": "Girolata",
+        "insee": "2A197",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Osani",
+        "infos": "Commune d'Osani",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.62327012341,
+            "lat": 42.3435694896
+        }
+    },
+    {
+        "site": "Pi\u00e8ve",
+        "insee": "2B230",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": null,
+        "infos": "(Site Pieve)",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.27821414573,
+            "lat": 42.5857060069
+        }
+    },
+    {
+        "site": "Bigorno",
+        "insee": "2B036",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Bigorno",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.30225902799,
+            "lat": 42.5310349596
+        }
+    },
+    {
+        "site": "Murato",
+        "insee": "2B172",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Murato",
+        "infos": "Ct\u00e9 Cmes du Nebio",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.32704854356,
+            "lat": 42.5671895141
+        }
+    },
+    {
+        "site": "Pruno",
+        "insee": "2B252",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Pruno",
+        "infos": "San Gavino",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.44755598733,
+            "lat": 42.4243509668
+        }
+    },
+    {
+        "site": "Serra-di-Fiumorbo",
+        "insee": "2B135",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Isolaccio-di-Fiumorbo",
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 9.26439576415,
+            "lat": 42.0157488768
+        }
+    },
+    {
+        "site": "San-Lorenzo",
+        "insee": "2B304",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "San-Lorenzo",
+        "infos": "Sivom Casaluna",
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.28923196943,
+            "lat": 42.3897522574
+        }
+    },
+    {
+        "site": "Ota",
+        "insee": "2A198",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Ota",
+        "infos": null,
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.73294026195,
+            "lat": 42.2548660718
+        }
+    },
+    {
+        "site": "Calvi",
+        "insee": "2B050",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Calvi",
+        "infos": "Ct\u00e9 de Cmes Calvi Balagne",
+        "code": 1,
+        "type": "En cours de r\u00e9habilitation",
+        "geocodage": {
+            "lon": 8.7595487404,
+            "lat": 42.5454874755
+        }
+    },
+    {
+        "site": "Peri",
+        "insee": "2A209",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": "Peri",
+        "infos": "CAPA",
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.91155032834,
+            "lat": 42.003934282
+        }
+    },
+    {
+        "site": "Eccica-Suarella",
+        "insee": "2A104",
+        "departement": "CORSE-DU-SUD",
+        "dep": "2A",
+        "commune": null,
+        "infos": null,
+        "code": 2,
+        "type": "R\u00e9habilit\u00e9e",
+        "geocodage": {
+            "lon": 8.89401261483,
+            "lat": 41.9231596216
+        }
+    },
+    {
+        "site": "Barbaggio",
+        "insee": "2B029",
+        "departement": "HAUTE-CORSE",
+        "dep": "2B",
+        "commune": "Barbaggio",
+        "infos": null,
+        "code": 3,
+        "type": "A r\u00e9habiliter",
+        "geocodage": {
+            "lon": 9.36802297003,
+            "lat": 42.6841491468
+        }
+    }
+]

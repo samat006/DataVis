@@ -116,11 +116,6 @@ ajouter_donnees_au_chapitre(livre, chapitre_id=5, dossier="chapitre_5/sport")
 
 
 
-
-
-
-
-
 # =========================
 # Sauvegarde
 # =========================
@@ -129,18 +124,6 @@ with open("data/livre_mis_a_jour.json", "w", encoding="utf-8") as f:
     json.dump(livre, f, ensure_ascii=False, indent=4)
 
 
-GLOBAL_STATS =  {
-    "total_population": 360200,
-    "annual_growth": 1.0,
-    "new_residents_per_year": 3900,
-    "aging_population_65plus": 25,
-    "avi_fibre_c overage": 84,
-    "5g_antennas": 953,
-    "students": 48818,
-    "sports_clubs": 170,
-    "data_sources": ["INSEE", "ARCEP", "Académie de Corse", "Collectivité de Corse"],
-    "last_update": "2025-11-17"
-  }
 #result = LIVRE | GLOBAL_STATS
 LIVRE = livre
 
@@ -465,6 +448,19 @@ def api_city(city_id):
 @app.route('/api/stats')
 def api_stats():
     return jsonify({"success": True, "stats": GLOBAL_STATS})
+
+
+@app.route('/api/livre', methods=['GET'])
+def api_livre():
+    file_path = os.path.join("data", "livre_mis_a_jour.json")
+
+    if not os.path.exists(file_path):
+        return jsonify({"error": "Fichier introuvable"}), 404
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    return jsonify(data)
 
 if __name__ == '__main__':
     print("🏆 CORSE DATAVIS - http://localhost:5000")
