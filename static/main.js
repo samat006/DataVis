@@ -1,7 +1,3 @@
-// ════════════════════════════════════════════════════════════════════════════════
-// 📚 LIVRE 3D INTERACTIF - CODE COMPLET AVEC MODULE QUALITÉ DE L'EAU
-// VERSION FINALE - Intégration complète avec Zones de Pollution Cesium
-// ════════════════════════════════════════════════════════════════════════════════
 
 // ════════════════════════════════════════════════════════════════════════════════
 // 🔧 CONFIGURATION GLOBALE
