@@ -470,11 +470,7 @@ function initTriSearch(pageIndex) {
  * ════════════════════════════════════════════════════════════════════════════════
  */
 
-/**
- * ════════════════════════════════════════════════════════════════════════════════
- * 🗺️ FONCTION GLOBALE DE VOL VERS UN SITE - CORRIGÉE
- * ════════════════════════════════════════════════════════════════════════════════
- */
+
 
 // Fonction globale accessible depuis HTML
 window.flyToSite = function(lat, lon, pageIndex, height = 2000) {
